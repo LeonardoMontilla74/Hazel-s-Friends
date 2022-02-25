@@ -25,9 +25,10 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Dog } = sequelize.models;
+const { Dog, Temperament } = sequelize.models;
 
-// Aca vendrian las relaciones
+Dog.belongsToMany(Temperament, { through: 'Dogs_Temperaments' });
+Temperament.belongsToMany(Dog, { through: 'Dogs_Temperaments' })
 
 module.exports = {
   ...sequelize.models,
