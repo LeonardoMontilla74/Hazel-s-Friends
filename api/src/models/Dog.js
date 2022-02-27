@@ -33,6 +33,8 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       defaultValue: 'https://cdn.pixabay.com/photo/2016/10/10/14/13/dog-1728494__340.png'
     }
+  }, {
+    timestamps: false
   });
 };
 /*  Las propiedades marcadas con asterísco deben ser obligatorias
