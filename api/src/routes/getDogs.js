@@ -28,7 +28,7 @@ module.exports = async function getDogs(req, res) {
                     name: name
                 }
             });
-            if (findOfDB.length) {
+            if (findOfDB) {
                 res.send(findOfDB);
             }
             res.status(404).send(`No se encontro ningún perro con el nombre ${name}`);
