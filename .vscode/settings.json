@@ -89,7 +89,7 @@
     "editor.bracketPairColorization.enabled": true,
     "workbench.panel.opensMaximized": "always",
     "workbench.startupEditor": "none",
-    "workbench.colorTheme": "Quiet Light",
+    "workbench.colorTheme": "Monokai Pro (Filter Machine)",
     "workbench.preferredDarkColorTheme": "Monokai Pro (Filter Spectrum)",
     "workbench.preferredLightColorTheme": "Abyss",
     "workbench.colorCustomizations": {
