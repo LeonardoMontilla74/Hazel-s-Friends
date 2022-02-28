@@ -24,14 +24,14 @@ module.exports = async function getDogs(req, res, next) {
                 return res.send(dogOfApi);
 
             } else {
-                const findOfDB = await Dog.findOne({
-                    were: {
-                        name: findName
-                    }
-                });
+                const findOfDB = await Dog.findAll({ include: Temperament });
 
-                if (findOfDB.length !== 0) {
-                    return res.send(findOfDB);
+                if (findOfDB) {
+                    for (const dog of findOfDB) {
+                        if (dog.dataValues.name.toLowerCase().includes(findName.toLowerCase())) {
+                            res.send(dog.dataValues);
+                        }
+                    }
                 }
             }
             res.status(404).send(`No se encontro ningún perro con el nombre ${findName}`);
