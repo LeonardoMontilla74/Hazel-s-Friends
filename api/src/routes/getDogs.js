@@ -1,73 +1,79 @@
 const axios = require('axios');
 const { Dog, Temperament } = require('../db');
+const { API_KEY } = process.env
 const URL = 'https://api.thedogapi.com/v1/breeds';
 
 module.exports = async function getDogs(req, res, next) {
-    const { name: findName } = req.query;
+    //busco todos los perros para luego trabajar con ellos...
+    const dogsOfDB = await Dog.findAll({ include: Temperament });
+    const dogsOfApi = await axios.get(URL + API_KEY);
 
-    if (findName) {
+    const { name } = req.query;
+    if (name) {
         try {
-            const findOnApi = await axios.get(`${URL}/search?q=${findName}`);
-            const dogOfApi = findOnApi.data.map((dog) => {
+            const findOnApi = dogsOfApi.data.filter((dog) => {
+                if (dog.name.toLowerCase().includes(name.toLowerCase())) return dog;
+            });
+
+            const resultOfApi = findOnApi?.map((dog) => {
                 return {
-                    id: dog.id,
                     name: dog.name,
+                    image: dog.image.url,
+                    temperament: dog.temperament,
                     height: dog.height.metric,
                     weight: dog.weight.metric,
                     life: dog.life_span,
                     origin: dog.origin,
                     bred_for: dog.bred_for
                 };
-            });
+            })
 
-            if (dogOfApi.length !== 0) {
-                return res.send(dogOfApi);
+            if (resultOfApi.length !== 0) {
+                return res.send(resultOfApi);
 
             } else {
-                const findOfDB = await Dog.findAll({ include: Temperament });
+                if (dogsOfDB) {
+                    for (const dog of dogsOfDB) {
+                        if (dog.dataValues.name.toLowerCase().includes(name.toLowerCase())) {
+                            const resultOfDB = {
+                                name: dog.name,
+                                image: dog.image,
+                                temperaments: dog.temperaments.map((temp) => temp.name).join(', '),
+                                weight: dog.weight,
+                                height: dog.height,
+                            };
+                            if (dog.life) resultOfDB.life = dog.life;
+                            if (dog.origin) resultOfDB.origin = dog.origin;
+                            if (dog.bred_for) resultOfDB.bred_for = dog.bred_for;
 
-                if (findOfDB) {
-                    for (const dog of findOfDB) {
-                        if (dog.dataValues.name.toLowerCase().includes(findName.toLowerCase())) {
-                            res.send(dog.dataValues);
+                            return res.send(resultOfDB);
                         }
                     }
                 }
             }
-            res.status(404).send(`No se encontro ningún perro con el nombre ${findName}`);
+            res.status(404).send(`No se encontro ningún perro con el nombre ${name}`);
 
         } catch (error) {
+            console.error(error);
             next(error);
         }
+    } else {
+        const allDogsApi = dogsOfApi.data?.map((dog) => {
+            return {
+                name: dog.name,
+                image: dog.image.url,
+                temperament: dog.temperament
+            };
+        });
 
-    } else { // desde aqui envio todos los perros.. tanto los de DB mas los de la API
-        try {
-            //busco en mi DB
-            const dogsOfDB = await Dog.findAll({ include: Temperament });
-
-            //busco en la Api
-            const findOfApi = await axios.get(URL);
-            const dogsOfApi = findOfApi.data?.map((dog) => {
-                return {
-                    name: dog.name,
-                    height: dog.height.metric,
-                    weight: dog.weight.metric,
-                    life: dog.life_span,
-                    origin: dog.origin,
-                    bred_for: dog.bred_for,
-                    image: dog.image.url,
-                    temperament: dog.temperament
-                };
+        const allDogsDB = dogsOfDB?.map((dog) => {
+            return ({
+                name: dog.name,
+                image: dog.image,
+                temperaments: dog.temperaments.map((temp) => temp.name).join(', ')
             });
-            res.send([...dogsOfDB, ...dogsOfApi]);
-        } catch (error) {
-            next(error);
-        }
+        });
+
+        res.send([...allDogsDB, ...allDogsApi]);
     }
 };
-/* Detalles minimos que se deben mostrar en la página principal
-Imagen
-Nombre
-Temperamento
-Peso
-*/
