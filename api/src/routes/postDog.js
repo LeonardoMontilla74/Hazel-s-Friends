@@ -1,25 +1,42 @@
 const { Dog, Temperament } = require('../db');
 
-module.exports = async function postDog(req, res) {
-    const { name, height, weight, life, origin, bred_for, image, temperaments } = req.body;
-    if (name && height && weight) {
+module.exports = async function postDog(req, res, next) {
+    const {
+        name,
+        height_max,
+        height_min,
+        weight_max,
+        weight_min,
+        life,
+        origin,
+        bred_for,
+        image,
+        temperaments
+    } = req.body;
+
+    if (name && height_max && height_min && weight_max && weight_min) {
         try {
             const dogCreate = await Dog.create({
                 name,
-                height,
-                weight,
+                height_min,
+                height_max,
+                weight_min,
+                weight_max,
                 life,
                 origin,
                 bred_for,
                 image,
             });
 
-            dogCreate.addTemperament(temperaments); // relaciono el perro creado con los temperamentos que recibo por body
+            dogCreate.addTemperament(temperaments); // los temperaments son un array de numeros con los ids
 
             res.status(201).send('Creación exitosa');
 
         } catch (error) {
             console.log(error);
+            next(error)
+
         }
-    } else res.send('Se necesitan los datos minimos para la creación');
+
+    } else res.status(206).send('Se necesitan los datos minimos para la creación');
 };

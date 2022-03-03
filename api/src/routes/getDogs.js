@@ -10,7 +10,7 @@ module.exports = async function getDogs(req, res, next) {
 
     const { name } = req.query;
     if (name) {
-        try {
+        try { // con el 2do endpoint es mas facil pero no me trae la imagen PREGUNTAR AL CORRECTOR
             const findOnApi = dogsOfApi.data.filter((dog) => {
                 if (dog.name.toLowerCase().includes(name.toLowerCase())) return dog;
             });
@@ -28,21 +28,21 @@ module.exports = async function getDogs(req, res, next) {
                 };
             })
 
-            if (resultOfApi.length !== 0) {
+            if (resultOfApi.length) {
                 return res.send(resultOfApi);
 
-            } else {
-                if (dogsOfDB) {
+            } else { // probar con un were si me da el tiempo xq de primera no me funcionó
+                if (dogsOfDB) { // así puedo darle el formato que me pide la ruta de detalles
                     for (const dog of dogsOfDB) {
                         if (dog.dataValues.name.toLowerCase().includes(name.toLowerCase())) {
-                            const resultOfDB = {
+                            const resultOfDB = { // formato identico al de la api
                                 name: dog.name,
                                 image: dog.image,
                                 temperaments: dog.temperaments.map((temp) => temp.name).join(', '),
-                                weight: dog.weight,
-                                height: dog.height,
+                                weight: dog.weight_min.toString() + ' - ' + dog.weight_max.toString(),
+                                height: dog.height_min.toString() + ' - ' + dog.height_max.toString(),
+                                life: dog.life.toString() + ' years',
                             };
-                            if (dog.life) resultOfDB.life = dog.life;
                             if (dog.origin) resultOfDB.origin = dog.origin;
                             if (dog.bred_for) resultOfDB.bred_for = dog.bred_for;
 
@@ -57,7 +57,7 @@ module.exports = async function getDogs(req, res, next) {
             console.error(error);
             next(error);
         }
-    } else {
+    } else { // si no hay un name como criterio de busqueda envio por defecto la ruta principal
         const allDogsApi = dogsOfApi.data?.map((dog) => {
             return {
                 name: dog.name,

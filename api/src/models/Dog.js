@@ -12,38 +12,47 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    height: {
+    image: {
+      type: DataTypes.STRING,
+      defaultValue: 'https://cdn.pixabay.com/photo/2016/10/10/14/13/dog-1728494__340.png'
+    },
+    height_min: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    weight: {
+    height_max: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    life: { //life_span en la api
-      type: DataTypes.INTEGER
+    weight_min: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    weight_max: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    life: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
     origin: {
       type: DataTypes.STRING
     },
     bred_for: {
-      type: DataTypes.ARRAY(DataTypes.STRING)
-    },
-    image: {
       type: DataTypes.STRING,
-      defaultValue: 'https://cdn.pixabay.com/photo/2016/10/10/14/13/dog-1728494__340.png'
-    }
+    },
   }, {
     timestamps: false
   });
 };
 /*  Las propiedades marcadas con asterísco deben ser obligatorias
 ID * => id
+Image => image.url
 Nombre * => name
 Altura * => height.metric
 Peso * => weight.metric
 Años de vida =>  life_span
 origen => origin
 ideal para => bred_for
-image => image.url
 */
