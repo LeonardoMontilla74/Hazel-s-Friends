@@ -21,7 +21,7 @@ export default function Home() {
                         key={dog.name}
                         name={dog.name}
                         image={dog.image}
-                        temperaments={dog.temperaments} />
+                        temperament={dog.temperament} />
                 );
             })}
         </div>

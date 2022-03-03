@@ -1,0 +1,17 @@
+.container {
+    background-color: #FFFBE9;
+    margin: 2rem;
+    padding: 2rem;
+}
+h1 {
+    color: #D29D2B;
+}
+button {
+    border: none;
+    width: 10rem;
+    height: 5rem;
+    border-radius: 0.5rem;
+    background-color: wheat;
+    color: #D29D2B;
+    font-size: 2rem;
+}
