@@ -11,7 +11,7 @@ module.exports = async function getDogs(req, res, next) {
     const allDogsDB = await Dog.findAll({ include: Temperament });
 
     function getImage(id) {
-        if (id) {
+        if (id) {// resulta que no todos los perros traen imagen
             const dog = allDogsAPI.data.find(dog => dog.image.id === id);
             return dog.image.url;
         }
@@ -21,7 +21,7 @@ module.exports = async function getDogs(req, res, next) {
     const { name } = req.query;
     if (name) {
         try {
-            const findOnApi = await axios.get(URL_FLAG + name);
+            const findOnApi = await axios.get(`${URL_FLAG}${name}&${API_KEY}`);
             const resultOfApi = findOnApi.data.map((dog) => {
                 return {
                     id: dog.id,
@@ -67,6 +67,7 @@ module.exports = async function getDogs(req, res, next) {
     } else { // si no hay un name como criterio de busqueda envio por defecto la ruta principal
         const dogsApi = allDogsAPI.data?.map((dog) => {
             return {
+                id: dog.id,
                 name: dog.name,
                 image: dog.image.url,
                 temperament: dog.temperament
@@ -75,6 +76,7 @@ module.exports = async function getDogs(req, res, next) {
 
         const dogsDB = allDogsDB?.map((dog) => {
             return ({
+                id: dog.id,
                 name: dog.name,
                 image: dog.image,
                 temperaments: dog.temperaments.map((temp) => temp.name).join(', ')
