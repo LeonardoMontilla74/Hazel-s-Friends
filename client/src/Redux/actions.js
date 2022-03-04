@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const GET_ALL_DOGS = 'GET ALL DOGS';
 export const GET_NAME = 'GET NAME';
+export const GET_ID = 'GET ID';
 export const GET_TEMPERAMENTS = 'GET TEMPERAMENTS';
 export const CREATE_DOG = 'CREATE DOG';
 
@@ -24,6 +25,17 @@ export function getName(name) {
         const dog = res.data;
         dispatch({
             type: GET_NAME,
+            payload: dog
+        });
+    };
+}
+
+export function getId(idRaza) {
+    return async function (dispatch) {
+        const res = await axios.get(`${URL}/dogs/${idRaza}`);
+        const dog = res.data;
+        dispatch({
+            type: GET_ID,
             payload: dog
         });
     };

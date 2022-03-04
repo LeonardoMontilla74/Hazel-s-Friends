@@ -1,6 +1,7 @@
 import {
     GET_ALL_DOGS,
     GET_NAME,
+    GET_ID,
     GET_TEMPERAMENTS,
     CREATE_DOG
 } from "./actions";
@@ -20,6 +21,12 @@ export default function Reducer(state = initialState, { type, payload }) {
             };
 
         case GET_NAME:
+            return {
+                ...state,
+                dog: payload
+            };
+
+        case GET_ID:
             return {
                 ...state,
                 dog: payload
