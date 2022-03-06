@@ -3,12 +3,13 @@ import {
     GET_NAME,
     GET_ID,
     GET_TEMPERAMENTS,
-    CREATE_DOG
+    CREATE_DOG,
+    CLEAR_DETAILS
 } from "./actions";
 
 const initialState = {
     allDogs: [],
-    dog: [],
+    dogDetails: [],
     temperaments: []
 };
 
@@ -23,13 +24,13 @@ export default function Reducer(state = initialState, { type, payload }) {
         case GET_NAME:
             return {
                 ...state,
-                dog: payload
+                dogDetails: payload
             };
 
         case GET_ID:
             return {
                 ...state,
-                dog: payload
+                dogDetails: payload
             };
 
         case GET_TEMPERAMENTS:
@@ -43,6 +44,12 @@ export default function Reducer(state = initialState, { type, payload }) {
                 ...state,
                 allDogs: [payload, ...state.allDogs]
             };
+
+        case CLEAR_DETAILS:
+            return {
+                ...state,
+                dogDetails: []
+            }
 
         default: return state;
     }

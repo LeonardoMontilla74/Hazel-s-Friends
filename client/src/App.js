@@ -1,6 +1,6 @@
 import { Route } from "react-router-dom";
 import Landing from "./React/Landing";
-import Home from './React/Home';
+import Home from './React/Home/Home';
 import Details from './React/Details';
 import Temperaments from "./React/Temperaments";
 

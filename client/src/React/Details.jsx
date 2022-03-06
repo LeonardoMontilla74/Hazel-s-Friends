@@ -1,15 +1,20 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getId } from "../Redux/actions";
+import { getId, clearDetails } from "../Redux/actions";
 
 export default function Details(props) {
 
     const dispatch = useDispatch();
-    const dog = useSelector((state) => state.dog);
+    const dog = useSelector((state) => state.dogDetails);
+    const id = props.match.params.idRaza
 
     useEffect(() => {
-        dispatch(getId(props.match.params.idRaza));
-    }, [dispatch]);
+
+        dispatch(getId(id));
+
+        return dispatch(clearDetails());
+
+    }, [dispatch, id]);
 
 
     return (

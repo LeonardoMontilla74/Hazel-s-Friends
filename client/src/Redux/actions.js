@@ -5,6 +5,7 @@ export const GET_NAME = 'GET NAME';
 export const GET_ID = 'GET ID';
 export const GET_TEMPERAMENTS = 'GET TEMPERAMENTS';
 export const CREATE_DOG = 'CREATE DOG';
+export const CLEAR_DETAILS = 'CLEAR DETAILS'
 
 const URL = 'http://localhost:3001';
 
@@ -60,4 +61,10 @@ export function createDog(dogUser) {
             payload: result
         });
     };
+}
+
+export function clearDetails() {
+    return ({
+        type: CLEAR_DETAILS
+    });
 }
