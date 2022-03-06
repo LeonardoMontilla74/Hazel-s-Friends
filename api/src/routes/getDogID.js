@@ -13,7 +13,7 @@ module.exports = async function getDogID(req, res, next) {
                 id: dog.id,
                 name: dog.name,
                 image: dog.image.url,
-                temperament: dog.temperament,
+                temperaments: dog.temperament,
                 height: dog.height.metric,
                 weight: dog.weight.metric,
                 life: dog.life_span,
@@ -40,7 +40,7 @@ module.exports = async function getDogID(req, res, next) {
                     if (dog.origin) resultOfDB.origin = dog.origin;
                     if (dog.bred_for) resultOfDB.bred_for = dog.bred_for;
 
-                    return res.send(resultOfDB);
+                    return res.send([resultOfDB]);
                 }
             }
         }

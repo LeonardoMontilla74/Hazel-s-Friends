@@ -26,6 +26,7 @@ module.exports = async function getDogs(req, res, next) {
                 return {
                     id: dog.id,
                     name: dog.name,
+                    temperaments: dog.temperament,
                     height: dog.height.metric,
                     weight: dog.weight.metric,
                     life: dog.life_span,
@@ -70,7 +71,7 @@ module.exports = async function getDogs(req, res, next) {
                 id: dog.id,
                 name: dog.name,
                 image: dog.image.url,
-                temperament: dog.temperament
+                temperaments: dog.temperament
             };
         });
 
