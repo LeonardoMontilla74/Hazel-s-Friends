@@ -6,7 +6,7 @@ export default function DogCard(props) {
         <div className={styles.container}>
             <h2>{props.name}</h2>
             <img src={props.image} alt="Img del perro" width={120} />
-            <p>{props.temperament}</p>
+            <p>{props.temperaments}</p>
         </div>
     );
 }

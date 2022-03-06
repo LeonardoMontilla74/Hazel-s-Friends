@@ -25,7 +25,7 @@ export default function Details(props) {
                         <div key={dog.id}>
                             <h2>{dog.name}</h2>
                             <img src={dog.image} alt={dog.name} width={350} />
-                            <p>Temperamento: {dog.temperament}</p>
+                            <p>Temperamento: {dog.temperaments}</p>
                             <p>Altura: {dog.height}</p>
                             <p>Peso: {dog.weight}</p>
                             <p>Espectativa de vida: {dog.life}</p>

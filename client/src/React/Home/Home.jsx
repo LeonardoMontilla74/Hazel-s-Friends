@@ -27,7 +27,7 @@ export default function Home() {
                         <DogCard
                             name={dog.name}
                             image={dog.image}
-                            temperament={dog.temperament} />
+                            temperaments={dog.temperaments} />
                     </Link>
 
                 );
