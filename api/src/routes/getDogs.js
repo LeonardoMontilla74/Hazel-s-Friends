@@ -71,6 +71,8 @@ module.exports = async function getDogs(req, res, next) {
                 id: dog.id,
                 name: dog.name,
                 image: dog.image.url,
+                height: dog.height.metric,
+                weight: dog.weight.metric,
                 temperaments: dog.temperament
             };
         });
@@ -80,6 +82,8 @@ module.exports = async function getDogs(req, res, next) {
                 id: dog.id,
                 name: dog.name,
                 image: dog.image,
+                weight: dog.weight_min.toString() + ' - ' + dog.weight_max.toString(),
+                height: dog.height_min.toString() + ' - ' + dog.height_max.toString(),
                 temperaments: dog.temperaments.map((temp) => temp.name).join(', ')
             });
         });
