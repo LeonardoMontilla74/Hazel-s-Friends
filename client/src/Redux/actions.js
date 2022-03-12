@@ -7,6 +7,13 @@ export const GET_TEMPERAMENTS = 'GET TEMPERAMENTS';
 export const CREATE_DOG = 'CREATE DOG';
 export const CLEAR_DETAILS = 'CLEAR DETAILS'
 
+export const ZA = 'ZA';
+export const AZ = 'AZ';
+export const weight_DSC = 'weight_DSC';
+export const weight_ASC = 'weight_ASC';
+export const height_DSC = 'weight_DSC';
+export const height_ASC = 'weight_ASC'
+
 const URL = 'http://localhost:3001';
 
 export function getAllDogs() {
@@ -67,4 +74,41 @@ export function clearDetails() {
     return ({
         type: CLEAR_DETAILS
     });
+}
+
+export function applyOrder(filter) {
+    switch (filter) {
+        case 'ZA':
+            return ({
+                type: ZA
+            });
+
+        case 'AZ':
+            return ({
+                type: AZ
+            });
+
+        case 'weight_DSC':
+            return ({
+                type: weight_DSC
+            });
+
+        case 'weight_ASC':
+            return ({
+                type: weight_ASC
+            });
+
+        case 'height_DSC':
+            return ({
+                type: height_DSC
+            });
+
+        case 'height_ASC':
+            return ({
+                type: height_ASC
+            });
+
+        default:
+            return;
+    }
 }
