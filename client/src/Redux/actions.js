@@ -13,6 +13,10 @@ export const PESO_DSC = 'PESO_DSC';
 export const PESO_ASC = 'PESO_ASC';
 export const ALTURA_DSC = 'ALTURA_DSC';
 export const ALTURA_ASC = 'ALTURA_ASC'
+export const TEMP = 'TEMP';
+export const FILTERS_DB = 'FILTERS DB';
+export const FILTERS_API = 'FILTERS API'
+
 
 const URL = 'http://localhost:3001';
 
@@ -76,8 +80,8 @@ export function clearDetails() {
     });
 }
 
-export function applyOrder(filter) {
-    switch (filter) {
+export function applyOrder(order) {
+    switch (order) {
         case 'ZA':
             return ({
                 type: ZA
@@ -111,4 +115,23 @@ export function applyOrder(filter) {
         default:
             return;
     }
+}
+
+export function applyFilters(temp) {
+    return ({
+        type: TEMP,
+        payload: temp
+    });
+}
+
+export function filtersDB() {
+    return {
+        type: FILTERS_DB
+    };
+}
+
+export function filtersAPI() {
+    return {
+        type: FILTERS_API
+    };
 }

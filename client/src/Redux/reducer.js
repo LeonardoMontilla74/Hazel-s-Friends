@@ -10,7 +10,10 @@ import {
     PESO_DSC,
     PESO_ASC,
     ALTURA_DSC,
-    ALTURA_ASC
+    ALTURA_ASC,
+    TEMP,
+    FILTERS_DB,
+    FILTERS_API
 } from "./actions";
 
 import order from './controlers'
@@ -61,7 +64,7 @@ export default function Reducer(state = initialState, { type, payload }) {
         case CREATE_DOG:
             return {
                 ...state,
-                allDogs: [payload, ...state.allDogs]
+                allDogs: state.allDogs
             };
 
         case CLEAR_DETAILS:
@@ -105,6 +108,29 @@ export default function Reducer(state = initialState, { type, payload }) {
                 ...state,
                 order: order('ALTURA_ASC', state.order)
             };
+
+        case TEMP:
+            return {
+                ...state,
+                filters: state.allDogs.filter((dog) => {
+                    if (dog.temperaments) {
+                        return dog.temperaments.includes(payload);
+                    }
+                    return dog;
+                })
+            };
+
+        case FILTERS_DB:
+            return {
+                ...state,
+                filters: state.allDogs.filter((dog) => dog.id.length > 4)
+            };
+
+        case FILTERS_API:
+            return {
+                ...state,
+                filters: state.allDogs.filter((dog) => dog.id.length === undefined)
+            }
 
         default: return state;
     }
