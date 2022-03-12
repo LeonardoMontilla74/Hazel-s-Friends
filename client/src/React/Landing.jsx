@@ -19,7 +19,7 @@ export default function Landing() {
             <img src={dogPI} alt="" />
             <h1>Hazel's Friends</h1>
             <Link to={'/dogs'} >
-                <button>Ver perritos</button>
+                <button className={styles.buttonGet}>Ver perritos</button>
             </Link>
         </div>
     );

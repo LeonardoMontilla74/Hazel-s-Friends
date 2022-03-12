@@ -6,7 +6,7 @@
 h1 {
     color: #D29D2B;
 }
-button {
+.buttonGet {
     border: none;
     width: 10rem;
     height: 5rem;
