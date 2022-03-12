@@ -17,10 +17,10 @@ export default function Order() {
                 <option>Seleccione una opción</option>
                 <option value="AZ">A - Z</option>
                 <option value="ZA">Z - A</option>
-                <option value="weith_DSC">Mayor peso</option>
-                <option value="weith_ASC">Menor peso</option>
-                <option value="height_DSC">Mayor altura</option>
-                <option value="height_ASC">Menor altura</option>
+                <option value="PESO_DSC">Mayor peso</option>
+                <option value="PESO_ASC">Menor peso</option>
+                <option value="ALTURA_DSC">Mayor altura</option>
+                <option value="ALTURA_ASC">Menor altura</option>
             </select>
         </div>
     );

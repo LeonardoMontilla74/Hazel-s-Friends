@@ -9,10 +9,10 @@ export const CLEAR_DETAILS = 'CLEAR DETAILS'
 
 export const ZA = 'ZA';
 export const AZ = 'AZ';
-export const weight_DSC = 'weight_DSC';
-export const weight_ASC = 'weight_ASC';
-export const height_DSC = 'weight_DSC';
-export const height_ASC = 'weight_ASC'
+export const PESO_DSC = 'PESO_DSC';
+export const PESO_ASC = 'PESO_ASC';
+export const ALTURA_DSC = 'ALTURA_DSC';
+export const ALTURA_ASC = 'ALTURA_ASC'
 
 const URL = 'http://localhost:3001';
 
@@ -88,24 +88,24 @@ export function applyOrder(filter) {
                 type: AZ
             });
 
-        case 'weight_DSC':
+        case 'PESO_DSC':
             return ({
-                type: weight_DSC
+                type: PESO_DSC
             });
 
-        case 'weight_ASC':
+        case 'PESO_ASC':
             return ({
-                type: weight_ASC
+                type: PESO_ASC
             });
 
-        case 'height_DSC':
+        case 'ALTURA_DSC':
             return ({
-                type: height_DSC
+                type: ALTURA_DSC
             });
 
-        case 'height_ASC':
+        case 'ALTURA_ASC':
             return ({
-                type: height_ASC
+                type: ALTURA_ASC
             });
 
         default:

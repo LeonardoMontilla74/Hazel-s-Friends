@@ -6,22 +6,38 @@ import {
     CREATE_DOG,
     CLEAR_DETAILS,
     ZA,
-    AZ
+    AZ,
+    PESO_DSC,
+    PESO_ASC,
+    ALTURA_DSC,
+    ALTURA_ASC
 } from "./actions";
+
+import order from './controlers'
 
 const initialState = {
     allDogs: [],
+    order: [],
     filters: [],
     dogDetails: [],
     temperaments: []
 };
 
+
 export default function Reducer(state = initialState, { type, payload }) {
+
     switch (type) {
         case GET_ALL_DOGS:
             return {
                 ...state,
-                allDogs: payload
+                allDogs: payload,
+                order: payload.map((dog) => {
+                    return {
+                        ...dog,
+                        weight: Number(dog.weight.slice(0, 2)),
+                        height: Number(dog.height.slice(0, 2))
+                    };
+                })
             };
 
         case GET_NAME:
@@ -57,23 +73,37 @@ export default function Reducer(state = initialState, { type, payload }) {
         case ZA:
             return {
                 ...state,
-                allDogs: state.allDogs.sort((a, b) => {
-                    if (a.name > b.name) {
-                        return -1;
-                    }
-                    return 0;
-                })
+                order: order('ZA', state.order)
             };
 
         case AZ:
             return {
                 ...state,
-                allDogs: state.allDogs.sort((a, b) => {
-                    if (a.name < b.name) {
-                        return -1;
-                    }
-                    return 0;
-                })
+                order: order('AZ', state.order)
+            };
+
+        case PESO_DSC:
+            return {
+                ...state,
+                order: order('PESO_DSC', state.order)
+            };
+
+        case PESO_ASC:
+            return {
+                ...state,
+                order: order('PESO_ASC', state.order)
+            };
+
+        case ALTURA_DSC:
+            return {
+                ...state,
+                order: order('ALTURA_DSC', state.order)
+            };
+
+        case ALTURA_ASC:
+            return {
+                ...state,
+                order: order('ALTURA_ASC', state.order)
             };
 
         default: return state;
