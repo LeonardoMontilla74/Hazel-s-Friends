@@ -112,7 +112,7 @@ export default function Reducer(state = initialState, { type, payload }) {
         case TEMP:
             return {
                 ...state,
-                filters: state.allDogs.filter((dog) => {
+                filters: state.filters?.filter((dog) => {
                     if (dog.temperaments) {
                         return dog.temperaments.includes(payload);
                     }

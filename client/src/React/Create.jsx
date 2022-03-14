@@ -23,14 +23,14 @@ export default function Create() {
         life: '',
         origin: '',
         bred_for: '',
-        temperaments: []
+        temperaments: [],
     });
 
     const handleChange = (e) => {
         if (e.target.name === 'temperaments') {
             setInput({
                 ...input,
-                temperaments: [...input.temperaments, Number(e.target.value)]
+                temperaments: [...input.temperaments, Number(e.target.value)],
             });
         } else if (e.target.type === 'number') {
             setInput({
@@ -79,25 +79,19 @@ export default function Create() {
                 <label>Ideal para:
                     <input type="text" name="bred_for" value={input.bred_for} onChange={handleChange} />
                 </label>
-                <label>Temperamento:
-                    <select name="temperaments" onChange={handleChange}>
+                <label>Temperamentos:
+                    <select name="temperaments" onChange={handleChange} >
+                        <option value="">Seleciona un temperamento</option>
                         {temperaments.map((temp) => {
                             return (
-                                <option key={temp.id} value={temp.id}>{temp.name}</option>
+                                <option key={temp.id} name={temp.id} value={temp.id} >{temp.name}</option>
                             );
                         })}
                     </select>
                 </label>
+                <p>{input.temperaments.join(' - ')}</p>
             </form>
             <button onClick={() => onSubmit(input)}>Crear perrito</button>
         </div>
     );
 }
-
-/* 
-height_min
-height_max
-weight_min
-weight_max
-life
-*/
