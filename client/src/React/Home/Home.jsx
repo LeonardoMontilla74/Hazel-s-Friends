@@ -14,7 +14,7 @@ export default function Home() {
     const check = allDogs.length;
 
     useEffect(() => {
-        if (check === 0) {
+        if (check < 1) {
             dispatch(getAllDogs());
         }
     }, [dispatch, check]);
@@ -22,9 +22,9 @@ export default function Home() {
 
     return (
         <div>
+            <SearchBar />
             <Order />
             <Filter />
-            <SearchBar />
             <Link to='/createDog'>
                 <button>Crear un nuevo perrito</button>
             </Link>

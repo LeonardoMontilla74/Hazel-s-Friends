@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllDogs } from '../../Redux/actions';
 import DogCard from './DogCard';
 
 export default function Pages({ allDogs }) {
+
+    const dispatch = useDispatch()
 
     const [page, setPage] = useState(1);
 
@@ -15,6 +18,12 @@ export default function Pages({ allDogs }) {
 
     const lastDog = page * 8;
     const firstDog = lastDog - 8;
+
+    useEffect(() => {
+        if (totalDogs < 1) dispatch(getAllDogs());
+
+    }, [dispatch, totalDogs])
+
 
     render = allDogs.slice(firstDog, lastDog);
 
@@ -54,6 +63,7 @@ export default function Pages({ allDogs }) {
                     ? render?.map((dog) => (
                         <DogCard
                             key={dog.id}
+                            id={dog.id}
                             name={dog.name}
                             image={dog.image}
                             temperaments={dog.temperaments}

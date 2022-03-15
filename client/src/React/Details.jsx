@@ -26,9 +26,9 @@ export default function Details(props) {
                             <h2>{dog.name}</h2>
                             <img src={dog.image} alt={dog.name} width={350} />
                             <p>Temperamento: {dog.temperaments}</p>
-                            <p>Altura: {dog.height}</p>
-                            <p>Peso: {dog.weight}</p>
-                            <p>Espectativa de vida: {dog.life}</p>
+                            <p>Altura: {dog.height}cm</p>
+                            <p>Peso: {dog.weight}kg</p>
+                            <p>Espectativa de vida: {dog.life} years</p>
                             <p>País de origen: {dog.origin}</p>
                             <p>Ideal para: {dog.bred_for}</p>
                         </div>
