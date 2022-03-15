@@ -13,7 +13,8 @@ import {
     ALTURA_ASC,
     TEMP,
     FILTERS_DB,
-    FILTERS_API
+    FILTERS_API,
+    CLEAR_FILTERS
 } from "./actions";
 
 import order from './controlers'
@@ -46,13 +47,13 @@ export default function Reducer(state = initialState, { type, payload }) {
         case GET_NAME:
             return {
                 ...state,
-                dogDetails: payload
+                dogDetails: payload,
             };
 
         case GET_ID:
             return {
                 ...state,
-                dogDetails: payload
+                dogDetails: payload,
             };
 
         case GET_TEMPERAMENTS:
@@ -64,59 +65,70 @@ export default function Reducer(state = initialState, { type, payload }) {
         case CREATE_DOG:
             return {
                 ...state,
-                allDogs: state.allDogs
+                allDogs: state.allDogs,
             };
 
         case CLEAR_DETAILS:
             return {
                 ...state,
-                dogDetails: []
+                dogDetails: [],
             }
 
         case ZA:
             return {
                 ...state,
-                order: order('ZA', state.order)
+                order: order('ZA', state.order),
             };
 
         case AZ:
             return {
                 ...state,
-                order: order('AZ', state.order)
+                order: order('AZ', state.order),
             };
 
         case PESO_DSC:
             return {
                 ...state,
-                order: order('PESO_DSC', state.order)
+                order: order('PESO_DSC', state.order),
             };
 
         case PESO_ASC:
             return {
                 ...state,
-                order: order('PESO_ASC', state.order)
+                order: order('PESO_ASC', state.order),
             };
 
         case ALTURA_DSC:
             return {
                 ...state,
-                order: order('ALTURA_DSC', state.order)
+                order: order('ALTURA_DSC', state.order),
             };
 
         case ALTURA_ASC:
             return {
                 ...state,
-                order: order('ALTURA_ASC', state.order)
+                order: order('ALTURA_ASC', state.order),
             };
 
         case TEMP:
+            let filterDog = [];
+            if (state.filters.length < 1) {
+                filterDog = state.allDogs;
+            } else {
+                filterDog = state.filters.filter((dog) => {
+                    if (dog.id !== 196
+                        && dog.id !== 197
+                        && dog.id !== 211
+                        && dog.id !== 261) return dog;
+                });
+            }
             return {
                 ...state,
-                filters: state.filters?.filter((dog) => {
+                filters: filterDog.filter((dog) => {
                     if (dog.temperaments) {
                         return dog.temperaments.includes(payload);
                     }
-                    return dog;
+                    return dog
                 })
             };
 
@@ -130,6 +142,12 @@ export default function Reducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 filters: state.allDogs.filter((dog) => dog.id.length === undefined)
+            };
+
+        case CLEAR_FILTERS:
+            return {
+                ...state,
+                filters: [],
             }
 
         default: return state;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getTemp, createDog } from "../Redux/actions";
+import { getTemp, createDog, getAllDogs } from "../Redux/actions";
 import { useHistory } from 'react-router-dom'
 import styles from '../Styles/Create.module.css'
 
@@ -8,11 +8,14 @@ export default function Create() {
 
     const dispatch = useDispatch();
     const temperaments = useSelector((state) => state.temperaments);
+    const check = temperaments.length
     const history = useHistory()
 
     useEffect(() => {
-        dispatch(getTemp());
-    }, [dispatch]);
+        if (check < 1) {
+            dispatch(getTemp());
+        }
+    }, [dispatch, check]);
 
     const [inputs, setInputs] = useState({
         temperaments: [],
@@ -61,6 +64,7 @@ export default function Create() {
 
     const onSubmit = (input) => {
         dispatch(createDog(input));
+        dispatch(getAllDogs());
         alert("Creación exitosa");
         history.push('/dogs');
     };

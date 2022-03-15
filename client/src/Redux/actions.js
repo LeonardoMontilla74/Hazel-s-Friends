@@ -16,6 +16,7 @@ export const ALTURA_ASC = 'ALTURA_ASC'
 export const TEMP = 'TEMP';
 export const FILTERS_DB = 'FILTERS DB';
 export const FILTERS_API = 'FILTERS API'
+export const CLEAR_FILTERS = 'CLEAR FILTERS'
 
 
 const URL = 'http://localhost:3001';
@@ -133,5 +134,11 @@ export function filtersDB() {
 export function filtersAPI() {
     return {
         type: FILTERS_API
+    };
+}
+
+export function clearFilters() {
+    return {
+        type: CLEAR_FILTERS
     };
 }
