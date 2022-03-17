@@ -13,8 +13,8 @@ export default function Order() {
     return (
         <div>
             <label>Ordenar:</label>
-            <select name="" id="" onChange={handleOrder}>
-                <option>Seleccione una opción</option>
+            <select onChange={handleOrder}>
+                <option value='AZ'>Seleccione una opción</option>
                 <option value="ZA">Z - A</option>
                 <option value="AZ">A - Z</option>
                 <option value="PESO_DSC">Mayor peso</option>

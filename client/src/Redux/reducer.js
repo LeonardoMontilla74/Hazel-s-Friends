@@ -15,10 +15,12 @@ import {
     FILTERS_DB,
     FILTERS_API,
     CLEAR_FILTERS,
-    ALL
+    ALL,
+    GET_PAGE
 } from "./actions";
 
 import order from './controlers'
+import crazy from '../Styles/Images/crazy.png'
 
 const initialState = {
     allDogs: [],
@@ -26,8 +28,8 @@ const initialState = {
     order: [],
     filters: [],
     dogDetails: [],
-    createResult: {},
-    temperaments: []
+    temperaments: [],
+    page: 1
 };
 
 
@@ -50,14 +52,17 @@ export default function Reducer(state = initialState, { type, payload }) {
         case GET_NAME:
             return {
                 ...state,
-                dogDetails: payload,
+                filters: [],
+                order: [],
+                dogDetails: payload
             };
 
         case GET_ID:
             return {
                 ...state,
-                dogDetails: payload,
-                createResult: payload
+                filters: [],
+                order: [],
+                dogDetails: payload
             };
 
         case GET_TEMPERAMENTS:
@@ -70,7 +75,6 @@ export default function Reducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 allDogs: state.allDogs,
-                createResult: payload
             };
 
         case CLEAR_DETAILS:
@@ -131,6 +135,7 @@ export default function Reducer(state = initialState, { type, payload }) {
             }
             return {
                 ...state,
+                order: [],
                 filters: filterDog.filter((dog) => {
                     if (dog.temperaments) {
                         return dog.temperaments.includes(payload);
@@ -140,14 +145,19 @@ export default function Reducer(state = initialState, { type, payload }) {
             };
 
         case FILTERS_DB:
+            let result = [];
+            let dogDB = state.allDogs.filter((dog) => dog.id.length > 4);
+            dogDB.length ? result = dogDB : result.push({ id: 404, name: 'Aún no has creado un perro', image: crazy, temperaments: 'Parece un buen momento para crear uno' })
             return {
                 ...state,
-                filters: state.allDogs.filter((dog) => dog.id.length > 4)
+                order: [],
+                filters: result
             };
 
         case FILTERS_API:
             return {
                 ...state,
+                order: [],
                 filters: state.allDogs.filter((dog) => dog.id.length === undefined)
             };
 
@@ -160,9 +170,14 @@ export default function Reducer(state = initialState, { type, payload }) {
         case ALL:
             return {
                 ...state,
-                order: state.initialOrder
+                order: state.allDogs
             }
 
+        case GET_PAGE:
+            return {
+                ...state,
+                page: payload
+            }
         default: return state;
     }
 }

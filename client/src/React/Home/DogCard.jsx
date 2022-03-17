@@ -7,9 +7,12 @@ export default function DogCard(props) {
     let image = props.image || doguillo
     return (
         <div className={styles.container}>
-            <Link to={`/details/${props.id}`}>
+            {props.id !== 404
+                ? <Link to={`/details/${props.id}`}>
                 <h2>{props.name}</h2>
-            </Link>
+                </Link>
+                : <h2>{props.name} </h2>
+            }
             <img src={image} alt="Img del perro" width={120} />
             <p>{props.temperaments}</p>
         </div>
