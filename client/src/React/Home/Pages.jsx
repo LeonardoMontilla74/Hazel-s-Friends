@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllDogs, getPage } from '../../Redux/actions';
 import DogCard from './DogCard';
+import durmiendo from '../../Styles/Images/durmiendo.png';
+import styles from '../../Styles/Pages.module.css'
 
 export default function Pages() {
 
@@ -33,12 +35,12 @@ export default function Pages() {
     if (filters.length) {
         totalDogs = filters.length;
         render = filters.slice(firstDog, lastDog);
-        dispatch(getPage(1))
+        //dispatch(getPage(1))
     }
     if (order.length) {
         totalDogs = order.length;
         render = order.slice(firstDog, lastDog);
-        dispatch(getPage(1))
+        //dispatch(getPage(1))
     }
 
     const pageNumbers = [];
@@ -59,18 +61,22 @@ export default function Pages() {
                     </button>
                 ))}
             </nav>
-            <div>
+            <div className={styles.container}>
                 {render.length > 0
                     ? render?.map((dog) => (
-                        <DogCard
-                            key={dog.id}
-                            id={dog.id}
-                            name={dog.name}
-                            image={dog.image}
-                            temperaments={dog.temperaments}
-                        />
+                        <div key={dog.id} >
+                            <DogCard
+                                id={dog.id}
+                                name={dog.name}
+                                image={dog.image}
+                                temperaments={dog.temperaments}
+                            />
+                        </div>
                     ))
-                    : <h2>Cargando...</h2>
+                    : <div>
+                        <h2>Cargando...</h2>
+                        <img src={durmiendo} width={180} alt="Esperando..." />
+                    </div>
                 }
             </div>
         </div>

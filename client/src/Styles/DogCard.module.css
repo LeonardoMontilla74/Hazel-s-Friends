@@ -1,8 +1,25 @@
-.container{
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-gap: 5px;
+  justify-items: center;
+  align-items: center;
+}
+
+.dogCards{
     border: solid 0.1rem;
     border-radius: 0.5rem;
     margin: 1rem;
     padding: 1rem;
     width: 15rem;
+    text-align: center;
+}
+
+.cardsDetails{
+    border: solid 0.1rem;
+    border-radius: 0.5rem;
+    margin: 1rem;
+    padding: 1rem;
+    width: 25rem;
     text-align: center;
 }

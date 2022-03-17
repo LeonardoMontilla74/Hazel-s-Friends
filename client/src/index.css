@@ -23,6 +23,11 @@ button{
   padding: 0.4rem;
   border-radius: 0.4rem;
   border: none;
+  transition: 500ms;
+}
+button:hover{
+  background-color: var(--color-letter);
+  color: var(--color-fondo-suave)
 }
 
 h2{
@@ -34,6 +39,10 @@ h2{
 p{
   color: var(--color-letter);
   font-size: 1.1rem;
+}
+
+img{
+  border-radius: 0.5rem;
 }
 
 @media only screen and (max-width: 400px) {

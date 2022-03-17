@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getId, clearDetails } from "../Redux/actions";
 import { useHistory } from 'react-router-dom'
+import durmiendo from '../Styles/Images/durmiendo.png';
+import styles from '../Styles/DogCard.module.css'
 
 export default function Details(props) {
 
@@ -25,12 +27,12 @@ export default function Details(props) {
     return (
         <div>
             <button onClick={getBack} >Volver</button>
-            <div>
+            <div className={styles.container}>
                 {dog.length
                     ? dog.map((dog) => {
                         return (
                             <div key={dog.id}>
-                                <div>
+                                <div className={styles.cardsDetails}>
                                     <h2>{dog.name}</h2>
                                     <img src={dog.image} alt={dog.name} width={350} />
                                     <p>Temperamento: {dog.temperaments}</p>
@@ -43,7 +45,11 @@ export default function Details(props) {
                             </div>
                         );
                     })
-                    : <h2>Cargando...</h2>}
+                    : <div>
+                        <h2>Cargando...</h2>
+                        <img src={durmiendo} width={180} alt="Esperando..." />
+                    </div>
+                }
             </div>
         </div>
     );

@@ -16,7 +16,9 @@ export default function Landing() {
 
     return (
         <div className={styles.container}>
-            <img src={dogPI} alt="" />
+            <div>
+                <img className={styles.imagen} src={dogPI} alt="" />
+            </div>
             <h1>Hazel's Friends</h1>
             <Link to={'/dogs'} >
                 <button className={styles.buttonGet}>Ver perritos</button>
