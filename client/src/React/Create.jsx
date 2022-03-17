@@ -71,6 +71,10 @@ export default function Create() {
         }
     };
 
+    function getBack() {
+        history.push('/dogs');
+    }
+
     return (
         <div>
             <form>
@@ -182,7 +186,15 @@ export default function Create() {
 
             <button
                 className={styles.buttonGet}
-                onClick={() => onSubmit(inputs)}>Crear perrito</button>
+                onClick={() => onSubmit(inputs)}>
+                Crear perrito
+            </button>
+
+            <button
+                className={styles.buttonGet}
+                onClick={getBack}>
+                Volver
+            </button>
 
         </div>
     );

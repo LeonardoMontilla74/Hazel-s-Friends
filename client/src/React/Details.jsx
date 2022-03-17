@@ -35,12 +35,12 @@ export default function Details(props) {
                                 <div className={styles.cardsDetails}>
                                     <h2>{dog.name}</h2>
                                     <img src={dog.image} alt={dog.name} width={350} />
-                                    <p>Temperamento: {dog.temperaments}</p>
+                                    {dog.temperaments ? <p>Temperamento: {dog.temperaments}</p> : null}
                                     <p>Altura: {dog.height} cm</p>
                                     <p>Peso: {dog.weight} kg</p>
-                                    <p>Espectativa de vida: {dog.life}</p>
-                                    <p>País de origen: {dog.origin}</p>
-                                    <p>Ideal para: {dog.bred_for}</p>
+                                    {dog.life ? < p > Espectativa de vida: {dog.life}</p> : null}
+                                    {dog.origin ? <p>País de origen: {dog.origin}</p> : null}
+                                    {dog.bred_for ? <p>Ideal para: {dog.bred_for}</p> : null}
                                 </div>
                             </div>
                         );

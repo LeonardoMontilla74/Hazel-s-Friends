@@ -54,7 +54,7 @@ export default function Pages() {
 
     return (
         <div>
-            <nav>
+            <nav className={styles.dogCards}>
                 {pageNumbers?.map((num) => (
                     <button key={num} onClick={() => handlePage(num)} >
                         {num}

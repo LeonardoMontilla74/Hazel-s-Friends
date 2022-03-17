@@ -1,0 +1,12 @@
+@import url('../index.css');
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-gap: 5px;
+    justify-items: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--color-barra);
+    border-radius: 1rem;
+}

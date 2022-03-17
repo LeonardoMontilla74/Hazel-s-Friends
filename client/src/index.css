@@ -3,27 +3,45 @@
 :root {
 font-size: 18px;
 --color-principal: rgb(245, 225, 188);
+--color-barra: #eee4d169;
 --color-fondo: #FFFBE9;
 --color-fondo-suave: #fffef7;
---color-buttons: rgb(247, 224, 181);
+--color-buttons: #f7e0b5;
 --color-letter: #775711;
 --font-principal: 'Cookie', 'Sansita Swashed';
 --font-secundario: 'Sansita Swashed', 'Cookie';
 }
 
 body{
+  margin: 1rem;
+  padding: 1rem;
   background-color: var(--color-fondo-suave)
+}
+
+input {
+  margin: 0.5rem;
+  padding: 0.4rem;
+  border-radius: 5px;
+  border: solid 0.5px
+}
+
+label{
+  margin: 0.5rem;
+  font-size: 1.5rem;
+  font-family: var(--font-principal);
+  color: var(--color-letter);
 }
 
 button{
   font-family: var(--font-secundario);
+  font-size: 1rem;
   background-color: var(--color-buttons);
   color: var(--color-letter);
   margin: 0.4rem;
   padding: 0.4rem;
   border-radius: 0.4rem;
   border: none;
-  transition: 500ms;
+  transition:all .5s ease-in-out;
 }
 button:hover{
   background-color: var(--color-letter);
@@ -43,6 +61,14 @@ p{
 
 img{
   border-radius: 0.5rem;
+}
+
+select{
+  background-color: var(--color-fondo);
+  color: var(--color-letter);
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 0.8rem
 }
 
 @media only screen and (max-width: 400px) {

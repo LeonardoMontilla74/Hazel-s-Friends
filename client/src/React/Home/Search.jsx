@@ -12,29 +12,29 @@ export default function SearchBar() {
         setInput(e.target.value);
     };
 
-    function findByName(e) {
-        e.preventDefault();
+    function findByName() {
         dispatch(getName(input));
         setInput('');
     };
 
-    function getBack(e) {
-        e.preventDefault();
+    function getBack() {
         dispatch(clearDetails());
     }
 
     return (
         <div>
             <form>
+                <label> Escribe aquí el nombre de una raza para buscar...</label>
+                <br />
                 <input
                     type="text"
-                    placeholder="Buscar perro..."
+                    placeholder="Buscar..."
                     value={input}
                     onChange={handleInput}
                 />
-                <button onClick={findByName}>Buscar</button>
-                <button onClick={getBack} >Volver</button>
             </form>
+            <button onClick={findByName}>Buscar</button>
+            <button onClick={getBack} >Volver</button>
         </div>
     );
 }
