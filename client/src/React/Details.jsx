@@ -26,21 +26,31 @@ export default function Details(props) {
 
     return (
         <div>
-            <button onClick={getBack} >Volver</button>
             <div className={styles.container}>
                 {dog.length
                     ? dog.map((dog) => {
                         return (
                             <div key={dog.id}>
                                 <div className={styles.cardsDetails}>
+
                                     <h2>{dog.name}</h2>
-                                    <img src={dog.image} alt={dog.name} width={350} />
-                                    {dog.temperaments ? <p>Temperamento: {dog.temperaments}</p> : null}
-                                    <p>Altura: {dog.height} cm</p>
-                                    <p>Peso: {dog.weight} kg</p>
-                                    {dog.life ? < p > Espectativa de vida: {dog.life}</p> : null}
-                                    {dog.origin ? <p>País de origen: {dog.origin}</p> : null}
-                                    {dog.bred_for ? <p>Ideal para: {dog.bred_for}</p> : null}
+
+                                    <div className={styles.container}>
+                                        <div>
+                                            <img src={dog.image} alt={dog.name} width={400} height={250} />
+                                        </div>
+
+                                        <div>
+                                            {dog.temperaments ? <p>Temperamento: {dog.temperaments}</p> : null}
+                                            <p>Altura: {dog.height} cm</p>
+                                            <p>Peso: {dog.weight} kg</p>
+                                            {dog.life ? < p > Espectativa de vida: {dog.life}</p> : null}
+                                            {dog.origin ? <p>País de origen: {dog.origin}</p> : null}
+                                            {dog.bred_for ? <p>Ideal para: {dog.bred_for}</p> : null}
+                                            <button onClick={getBack} >Volver</button>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         );

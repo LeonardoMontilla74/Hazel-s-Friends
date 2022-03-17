@@ -10,11 +10,15 @@ export default function DogCard(props) {
             {props.id !== 404
                 ? <Link style={{ textDecoration: 'none' }} to={`/details/${props.id}`}>
                     <h2>{props.name}</h2>
+                    <img src={image} alt="Img del perro" width={180} />
+                    <p>{props.temperaments}</p>
                 </Link>
-                : <h2>{props.name} </h2>
+                : <div>
+                    <h2>{props.name}</h2>
+                    <img src={image} alt="Img del perro" width={180} />
+                    <p>{props.temperaments}</p>
+                </div>
             }
-            <img src={image} alt="Img del perro" width={180} />
-            <p>{props.temperaments}</p>
         </div>
     );
 }
