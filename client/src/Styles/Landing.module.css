@@ -1,17 +1,21 @@
+@import url(../index.css);
+
 .container {
-    background-color: #FFFBE9;
+    background-color: var(--color-fondo);
     margin: 2rem;
     padding: 2rem;
 }
 h1 {
-    color: #D29D2B;
+    color: var(--color-letter);
+    font-size: 4rem;
+    font-family: var(--font-principal);
 }
 .buttonGet {
     border: none;
     width: 10rem;
-    height: 5rem;
+    height: 10rem;
     border-radius: 0.5rem;
-    background-color: wheat;
-    color: #D29D2B;
+    background-color: var(--color-principal);
+    color: var(--color-letter);
     font-size: 2rem;
 }

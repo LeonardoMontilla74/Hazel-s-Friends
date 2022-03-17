@@ -8,8 +8,8 @@ export default function DogCard(props) {
     return (
         <div className={styles.container}>
             {props.id !== 404
-                ? <Link to={`/details/${props.id}`}>
-                <h2>{props.name}</h2>
+                ? <Link style={{ textDecoration: 'none' }} to={`/details/${props.id}`}>
+                    <h2>{props.name}</h2>
                 </Link>
                 : <h2>{props.name} </h2>
             }
