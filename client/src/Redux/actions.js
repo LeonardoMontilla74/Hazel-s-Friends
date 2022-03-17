@@ -7,6 +7,7 @@ export const GET_TEMPERAMENTS = 'GET TEMPERAMENTS';
 export const CREATE_DOG = 'CREATE DOG';
 export const CLEAR_DETAILS = 'CLEAR DETAILS'
 
+//Order
 export const ZA = 'ZA';
 export const AZ = 'AZ';
 export const PESO_DSC = 'PESO_DSC';
@@ -14,6 +15,9 @@ export const PESO_ASC = 'PESO_ASC';
 export const ALTURA_DSC = 'ALTURA_DSC';
 export const ALTURA_ASC = 'ALTURA_ASC'
 export const TEMP = 'TEMP';
+export const ALL = 'ALL';
+
+//Filters
 export const FILTERS_DB = 'FILTERS DB';
 export const FILTERS_API = 'FILTERS API'
 export const CLEAR_FILTERS = 'CLEAR FILTERS'
@@ -112,6 +116,11 @@ export function applyOrder(order) {
             return ({
                 type: ALTURA_ASC
             });
+
+        case 'ALL':
+            return ({
+                type: ALL
+            })
 
         default:
             return;

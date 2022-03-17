@@ -14,13 +14,15 @@ import {
     TEMP,
     FILTERS_DB,
     FILTERS_API,
-    CLEAR_FILTERS
+    CLEAR_FILTERS,
+    ALL
 } from "./actions";
 
 import order from './controlers'
 
 const initialState = {
     allDogs: [],
+    initialOrder: [],
     order: [],
     filters: [],
     dogDetails: [],
@@ -35,7 +37,7 @@ export default function Reducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 allDogs: payload,
-                order: payload.map((dog) => {
+                initialOrder: payload.map((dog) => {
                     return {
                         ...dog,
                         weight: Number(dog.weight.slice(0, 2)),
@@ -77,37 +79,37 @@ export default function Reducer(state = initialState, { type, payload }) {
         case ZA:
             return {
                 ...state,
-                order: order('ZA', state.order),
+                order: order('ZA', state.initialOrder),
             };
 
         case AZ:
             return {
                 ...state,
-                order: order('AZ', state.order),
+                order: order('AZ', state.initialOrder),
             };
 
         case PESO_DSC:
             return {
                 ...state,
-                order: order('PESO_DSC', state.order),
+                order: order('PESO_DSC', state.initialOrder),
             };
 
         case PESO_ASC:
             return {
                 ...state,
-                order: order('PESO_ASC', state.order),
+                order: order('PESO_ASC', state.initialOrder),
             };
 
         case ALTURA_DSC:
             return {
                 ...state,
-                order: order('ALTURA_DSC', state.order),
+                order: order('ALTURA_DSC', state.initialOrder),
             };
 
         case ALTURA_ASC:
             return {
                 ...state,
-                order: order('ALTURA_ASC', state.order),
+                order: order('ALTURA_ASC', state.initialOrder),
             };
 
         case TEMP:
@@ -119,7 +121,9 @@ export default function Reducer(state = initialState, { type, payload }) {
                     if (dog.id !== 196
                         && dog.id !== 197
                         && dog.id !== 211
-                        && dog.id !== 261) return dog;
+                        && dog.id !== 261) {
+                        return dog;
+                    }
                 });
             }
             return {
@@ -148,6 +152,12 @@ export default function Reducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 filters: [],
+            }
+
+        case ALL:
+            return {
+                ...state,
+                order: state.initialOrder
             }
 
         default: return state;
