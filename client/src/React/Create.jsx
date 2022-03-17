@@ -12,9 +12,7 @@ export default function Create() {
     const history = useHistory()
 
     useEffect(() => {
-        if (check < 1) {
-            dispatch(getTemp());
-        }
+        if (check < 1) dispatch(getTemp());
     }, [dispatch, check]);
 
     const [inputs, setInputs] = useState({

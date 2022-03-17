@@ -8,10 +8,7 @@ export default function Order() {
     const temperaments = useSelector((state) => state.temperaments);
     const check = temperaments.length
     useEffect(() => {
-        if (check < 1) {
-            dispatch(getTemp());
-        }
-
+        if (check < 1) dispatch(getTemp());
     }, [dispatch, check]);
 
 
@@ -37,12 +34,16 @@ export default function Order() {
 
     return (
         <div>
-            <label>Filtrar:</label>
-            <select name="" id="" onChange={handleOrder}>
+            <label>Filtrar desde:</label>
+            <select onChange={handleOrder}>
                 <option>Seleccione una opción</option>
+                <option value="ALL">Todos los perros</option>
                 <option value="DB">Tus perros creados</option>
-                <option value="API">Otras razas</option>
-                <option value="TEMP">Temperamento</option>
+                <option value="API">Razas existentes</option>
+            </select>
+            <label>Filtrar por temperamentos:</label>
+            <select onChange={handleOrder}>
+                <option value="TEMP">Selecione un temperamento</option>
                 {temperaments.map((temp) => <option key={temp.id} value={temp.name} >{temp.name}</option>)}
             </select>
             <button onClick={handleFilters} >Limpiar filtros</button>

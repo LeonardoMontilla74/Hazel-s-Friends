@@ -15,8 +15,8 @@ export default function Order() {
             <label>Ordenar:</label>
             <select name="" id="" onChange={handleOrder}>
                 <option>Seleccione una opción</option>
-                <option value="AZ">A - Z</option>
                 <option value="ZA">Z - A</option>
+                <option value="AZ">A - Z</option>
                 <option value="PESO_DSC">Mayor peso</option>
                 <option value="PESO_ASC">Menor peso</option>
                 <option value="ALTURA_DSC">Mayor altura</option>
