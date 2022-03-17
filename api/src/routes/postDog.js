@@ -30,7 +30,7 @@ module.exports = async function postDog(req, res, next) {
 
             dogCreate.addTemperament(temperaments); // los temperaments son un array de numeros con los ids
 
-            res.status(201).send('Creación exitosa');
+            res.status(201).send({ ok: 'Creación exitosa' });
 
         } catch (error) {
             console.log(error);
@@ -38,5 +38,5 @@ module.exports = async function postDog(req, res, next) {
 
         }
 
-    } else res.status(206).send('Se necesitan los datos minimos para la creación');
+    } else res.status(206).send({ error: 'Se necesitan los datos minimos para la creación' });
 };

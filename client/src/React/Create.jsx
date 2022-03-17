@@ -8,6 +8,7 @@ export default function Create() {
 
     const dispatch = useDispatch();
     const temperaments = useSelector((state) => state.temperaments);
+
     const check = temperaments.length
     const history = useHistory()
 
@@ -19,27 +20,26 @@ export default function Create() {
         temperaments: [],
     });
 
-    const [errors, setErrors] = useState({
-        name: '',
-        height_max: '',
-        weight_max: '',
-        origin: '',
-        bred_for: ''
-    });
+    const [errors, setErrors] = useState({});
+    let error = {};
 
     function validate(inputs) {
 
-        let error = {};
         if (/\d+/.test(inputs.name)) error.name = "El nombre es inválido";
         if (/\d+/.test(inputs.bred_for)) error.bred_for = "Debe ser un texto";
         if (/\d+/.test(inputs.origin)) error.origin = "Debe ser un texto";
         if (inputs.height_max < inputs.height_min) error.height_max = 'La altura máxima debe ser mayor';
         if (inputs.weight_max < inputs.weight_min) error.weight_max = 'El peso máximo debe ser mayor';
 
+        if (!inputs.name) error.name = "Este campo es obligatorio";
+        if (!inputs.height_max) error.height_max = 'Este campo es obligatorio';
+        if (!inputs.height_min) error.height_min = 'Este campo es obligatorio';
+        if (!inputs.weight_max) error.weight_max = 'Este campo es obligatorio';
+        if (!inputs.weight_min) error.weight_min = 'Este campo es obligatorio';
         setErrors(error);
     }
 
-    const handleChange = (e) => {
+    function handleChange(e) {
         if (e.target.name === 'temperaments') {
             setInputs({
                 ...inputs,
@@ -57,14 +57,18 @@ export default function Create() {
                 [e.target.name]: e.target.value
             });
         }
-        validate(inputs)
     };
 
-    const onSubmit = (input) => {
-        dispatch(createDog(input));
-        dispatch(getAllDogs());
-        alert("Creación exitosa");
-        history.push('/dogs');
+    function onSubmit(input) {
+        validate(inputs);
+        if (Object.keys(error).length === 0) {
+            dispatch(createDog(input));
+            dispatch(getAllDogs());
+            alert('Creación exitosa');
+            history.push('/dogs');
+        } else {
+            alert('Por favor complete el formulario correctamente');
+        }
     };
 
     return (
@@ -77,7 +81,7 @@ export default function Create() {
                         name="name"
                         value={inputs.name}
                         autoComplete="off"
-                        className={errors.name ? styles.error : styles.ok}
+                        className={errors.name ? styles.error : null}
                         onChange={handleChange} />
                     {errors.name ? <p className={styles.error}>{errors.name}</p> : null}
                 </label>
@@ -89,7 +93,7 @@ export default function Create() {
                         placeholder="Ej. 80... Debe ser mayor"
                         name="height_max"
                         value={inputs.height_max}
-                        className={errors.height_max ? styles.error : styles.ok}
+                        className={errors.height_max ? styles.error : null}
                         onChange={handleChange} />
                     {errors.height_max ? <p className={styles.error} >{errors.height_max}</p> : null}
                 </label>
@@ -101,6 +105,7 @@ export default function Create() {
                         name="height_min"
                         value={inputs.height_min}
                         onChange={handleChange} />
+                    {errors.height_min ? <p className={styles.error}>{errors.height_min}</p> : null}
                 </label>
                 <br />
 
@@ -110,7 +115,7 @@ export default function Create() {
                         placeholder="Ej. 8... Debe ser mayor"
                         name="weight_max"
                         value={inputs.weight_max}
-                        className={errors.weight_max ? styles.error : styles.ok}
+                        className={errors.weight_max ? styles.error : null}
                         onChange={handleChange} />
                     {errors.weight_max ? <p className={styles.error}>{errors.weight_max}</p> : null}
                 </label>
@@ -122,6 +127,7 @@ export default function Create() {
                         name="weight_min"
                         value={inputs.weight_min}
                         onChange={handleChange} />
+                    {errors.weight_min ? <p className={styles.error}>{errors.weight_min}</p> : null}
                 </label>
                 <br />
 
@@ -142,7 +148,7 @@ export default function Create() {
                         name="origin"
                         value={inputs.origin}
                         autoComplete='off'
-                        className={errors.origin ? styles.error : styles.ok}
+                        className={errors.origin ? styles.error : null}
                         onChange={handleChange} />
                 </label>
                 <br />
@@ -154,7 +160,7 @@ export default function Create() {
                         name="bred_for"
                         value={inputs.bred_for}
                         autoComplete='off'
-                        className={errors.bred_for ? styles.error : styles.ok}
+                        className={errors.bred_for ? styles.error : null}
                         onChange={handleChange} />
                 </label>
                 <br />

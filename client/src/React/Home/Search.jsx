@@ -18,20 +18,23 @@ export default function SearchBar() {
         setInput('');
     };
 
-    function getBack() {
+    function getBack(e) {
+        e.preventDefault();
         dispatch(clearDetails());
     }
 
     return (
-        <form>
-            <input
-                type="text"
-                placeholder="Buscar perro..."
-                value={input}
-                onChange={handleInput}
-            />
-            <button onClick={findByName}>Buscar</button>
-            <button onClick={getBack} >Volver</button>
-        </form>
+        <div>
+            <form>
+                <input
+                    type="text"
+                    placeholder="Buscar perro..."
+                    value={input}
+                    onChange={handleInput}
+                />
+                <button onClick={findByName}>Buscar</button>
+                <button onClick={getBack} >Volver</button>
+            </form>
+        </div>
     );
 }

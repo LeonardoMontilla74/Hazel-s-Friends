@@ -1,4 +1,5 @@
 import axios from 'axios';
+import crazy from '../Styles/Images/crazy.png'
 
 export const GET_ALL_DOGS = 'GET ALL DOGS';
 export const GET_NAME = 'GET NAME';
@@ -39,7 +40,8 @@ export function getAllDogs() {
 export function getName(name) {
     return async function (dispatch) {
         const res = await axios.get(`${URL}/dogs?name=${name}`);
-        const dog = res.data;
+        let dog = res.data;
+        if (dog[0].error) dog = [{ id: 404, name: 'No se encontró el perro con el nombre: ' + name, image: crazy, temperaments: '' }]
         dispatch({
             type: GET_NAME,
             payload: dog
@@ -72,9 +74,10 @@ export function getTemp() {
 export function createDog(dogUser) {
     return async function (dispatch) {
         const result = await axios.post(`${URL}/dog`, dogUser);
+
         dispatch({
             type: CREATE_DOG,
-            payload: result
+            payload: result.data
         });
     };
 }

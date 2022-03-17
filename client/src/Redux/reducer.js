@@ -26,6 +26,7 @@ const initialState = {
     order: [],
     filters: [],
     dogDetails: [],
+    createResult: {},
     temperaments: []
 };
 
@@ -56,6 +57,7 @@ export default function Reducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 dogDetails: payload,
+                createResult: payload
             };
 
         case GET_TEMPERAMENTS:
@@ -68,6 +70,7 @@ export default function Reducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 allDogs: state.allDogs,
+                createResult: payload
             };
 
         case CLEAR_DETAILS:

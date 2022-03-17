@@ -15,7 +15,6 @@ module.exports = async function getDogs(req, res, next) {
             const dog = allDogsAPI.data.find(dog => dog.image.id === id);
             return dog.image.url;
         }
-        return "D:\Documentos\Curso Full Stack\Proyecto Individual\Hazel's Friends\client\src\Styles\Images\doguillo.jpg"
     }
 
     const { name } = req.query;
