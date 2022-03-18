@@ -7,6 +7,7 @@ export default function Order() {
     const dispatch = useDispatch();
 
     const handleOrder = (e) => {
+        dispatch(applyOrder('ALL'))
         dispatch(applyOrder(e.target.value));
     };
 
