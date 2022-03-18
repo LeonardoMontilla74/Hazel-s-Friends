@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getTemp, createDog, getAllDogs } from "../Redux/actions";
 import { useHistory } from 'react-router-dom'
 import styles from '../Styles/Create.module.css'
+import black from '../Styles/Images/black.png'
 
 export default function Create() {
 
@@ -76,8 +77,9 @@ export default function Create() {
     }
 
     return (
-        <div>
-            <form>
+        <div className={styles.container}>
+            <form className={styles.form}>
+                <h2>Escribe aquí todas las características de tu mascota ideal...</h2>
                 <label>Nombre:
                     <input
                         type="text"
@@ -108,6 +110,7 @@ export default function Create() {
                         placeholder="Ej. 60..."
                         name="height_min"
                         value={inputs.height_min}
+                        className={errors.height_min ? styles.error : null}
                         onChange={handleChange} />
                     {errors.height_min ? <p className={styles.error}>{errors.height_min}</p> : null}
                 </label>
@@ -130,6 +133,7 @@ export default function Create() {
                         placeholder="Ej. 4..."
                         name="weight_min"
                         value={inputs.weight_min}
+                        className={errors.weight_min ? styles.error : null}
                         onChange={handleChange} />
                     {errors.weight_min ? <p className={styles.error}>{errors.weight_min}</p> : null}
                 </label>
@@ -154,6 +158,7 @@ export default function Create() {
                         autoComplete='off'
                         className={errors.origin ? styles.error : null}
                         onChange={handleChange} />
+                    {errors.origin ? <p className={styles.error}>{errors.origin}</p> : null}
                 </label>
                 <br />
 
@@ -166,6 +171,7 @@ export default function Create() {
                         autoComplete='off'
                         className={errors.bred_for ? styles.error : null}
                         onChange={handleChange} />
+                    {errors.bred_for ? <p className={styles.error}>{errors.bred_for}</p> : null}
                 </label>
                 <br />
 
@@ -184,17 +190,22 @@ export default function Create() {
 
             </form>
 
-            <button
-                className={styles.buttonGet}
-                onClick={() => onSubmit(inputs)}>
-                Crear perrito
-            </button>
+            <div className={styles.blockButtons}>
+                <button
+                    className={styles.buttonGet}
+                    onClick={() => onSubmit(inputs)}>
+                    Crear perrito
+                </button>
 
-            <button
-                className={styles.buttonGet}
-                onClick={getBack}>
-                Volver
-            </button>
+                <button
+                    className={styles.buttonGet}
+                    onClick={getBack}>
+                    Volver
+                </button>
+                <br />
+                <img className={styles.imagen} src={black} alt=" " />
+
+            </div>
 
         </div>
     );

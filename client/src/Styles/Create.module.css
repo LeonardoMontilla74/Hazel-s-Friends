@@ -1,7 +1,19 @@
+.container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  justify-items: center;
+  align-items: center;
+}
+
+.form{
+    margin-left: 100px;
+    margin-top: 0px;
+    width: 51vw;
+    height: max-content;
+}
+
 .error{
-    border: 2px solid rgba(255, 0, 0, 0.685);
-    color:rgba(255, 0, 0, 0.897);
-    width: 10rem;
+    color:rgba(252, 64, 64, 0.897);
     text-align: center;
 }
 
@@ -14,4 +26,15 @@
     color: #D29D2B;
     font-size: 1.5rem;
     transition: 500ms;
+}
+
+.blockButtons{
+    width: max-content;
+    margin-left: 40%;
+}
+
+.imagen{
+    width: 350px;
+    height: 350px;
+    margin-right: 100px;
 }

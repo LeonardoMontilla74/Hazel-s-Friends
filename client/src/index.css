@@ -45,6 +45,7 @@ button{
 }
 
 button:hover{
+  cursor: pointer;
   background-color: var(--color-letter);
   color: var(--color-fondo-suave);
   box-shadow: 0px 0px 4px 4px #e0ab84;

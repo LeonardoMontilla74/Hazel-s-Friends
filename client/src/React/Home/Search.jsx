@@ -12,12 +12,15 @@ export default function SearchBar() {
         setInput(e.target.value);
     };
 
-    function findByName() {
+    function findByName(e) {
+        e.preventDefault();
+        if (e.keyCode === 13) dispatch(getName(input))
         dispatch(getName(input));
         setInput('');
     };
 
-    function getBack() {
+    function getBack(e) {
+        e.preventDefault()
         dispatch(clearDetails());
     }
 
@@ -32,9 +35,10 @@ export default function SearchBar() {
                     value={input}
                     onChange={handleInput}
                 />
+                <br />
+                <button onClick={findByName}>Buscar</button>
+                <button onClick={getBack} >Volver</button>
             </form>
-            <button onClick={findByName}>Buscar</button>
-            <button onClick={getBack} >Volver</button>
         </div>
     );
 }

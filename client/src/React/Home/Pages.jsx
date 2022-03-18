@@ -28,19 +28,18 @@ export default function Pages() {
     render = allDogs.slice(firstDog, lastDog);
 
     let totalDogs = allDogs.length;
-    if (dogDetails.length) {
+    if (dogDetails.length > 0) {
         totalDogs = dogDetails.length;
         render = dogDetails.slice(firstDog, lastDog)
     }
-    if (filters.length) {
+    if (filters.length > 0) {
         totalDogs = filters.length;
         render = filters.slice(firstDog, lastDog);
-        //dispatch(getPage(1))
+        dispatch(getPage(1))
     }
-    if (order.length) {
+    if (order.length > 0) {
         totalDogs = order.length;
         render = order.slice(firstDog, lastDog);
-        //dispatch(getPage(1))
     }
 
     const pageNumbers = [];
