@@ -23,10 +23,6 @@ export const FILTERS_DB = 'FILTERS DB';
 export const FILTERS_API = 'FILTERS API'
 export const CLEAR_FILTERS = 'CLEAR FILTERS'
 
-//paginate
-export const GET_PAGE = 'GET PAGE'
-
-
 const URL = 'http://localhost:3001';
 
 export function getAllDogs() {
@@ -155,12 +151,5 @@ export function filtersAPI() {
 export function clearFilters() {
     return {
         type: CLEAR_FILTERS
-    };
-}
-
-export function getPage(num) {
-    return {
-        type: GET_PAGE,
-        payload: num
     };
 }

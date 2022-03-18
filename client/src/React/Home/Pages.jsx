@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllDogs, getPage } from '../../Redux/actions';
+import { getAllDogs } from '../../Redux/actions';
 import DogCard from './DogCard';
 import durmiendo from '../../Styles/Images/durmiendo.png';
 import styles from '../../Styles/Pages.module.css'
@@ -12,32 +12,35 @@ export default function Pages() {
     const order = useSelector((state) => state.order);
     const filters = useSelector((state) => state.filters);
     const dogDetails = useSelector((state) => state.dogDetails);
-    const page = useSelector((state) => state.page)
     const check = allDogs.length;
 
     useEffect(() => {
-        dispatch(getPage(1))
         if (check < 1) dispatch(getAllDogs());
 
     }, [dispatch, check]);
 
-    const lastDog = page * 8;
+    const [pages, setPages] = useState(1);
+
+    function handlePage(num) {
+        setPages(num);
+    }
+
+    const lastDog = pages * 8;
     const firstDog = lastDog - 8;
 
     let render = [];
     render = allDogs.slice(firstDog, lastDog);
 
     let totalDogs = allDogs.length;
-    if (dogDetails.length > 0) {
+    if (dogDetails.length) {
         totalDogs = dogDetails.length;
         render = dogDetails.slice(firstDog, lastDog)
     }
-    if (filters.length > 0) {
+    if (filters.length) {
         totalDogs = filters.length;
         render = filters.slice(firstDog, lastDog);
-        dispatch(getPage(1))
     }
-    if (order.length > 0) {
+    if (order.length) {
         totalDogs = order.length;
         render = order.slice(firstDog, lastDog);
     }
@@ -45,10 +48,6 @@ export default function Pages() {
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(totalDogs / 8); i++) {
         pageNumbers.push(i);
-    }
-
-    function handlePage(num) {
-        dispatch(getPage(num));
     }
 
     return (

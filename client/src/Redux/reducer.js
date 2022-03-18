@@ -15,8 +15,7 @@ import {
     FILTERS_DB,
     FILTERS_API,
     CLEAR_FILTERS,
-    ALL,
-    GET_PAGE
+    ALL
 } from "./actions";
 
 import order from './controlers'
@@ -182,11 +181,6 @@ export default function Reducer(state = initialState, { type, payload }) {
                 order: state.allDogs
             }
 
-        case GET_PAGE:
-            return {
-                ...state,
-                page: payload
-            }
         default: return state;
     }
 }
