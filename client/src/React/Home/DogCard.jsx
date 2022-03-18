@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import doguillo from '../../Styles/Images/doguillo.jpg';
+import HazelDefault from '../../Styles/Images/HazelDefault.jpg';
 import styles from '../../Styles/DogCard.module.css';
 
 export default function DogCard(props) {
-    let image = props.image || doguillo
+    let image = props.image || HazelDefault
     return (
         <div className={styles.dogCards}>
             {props.id !== 404

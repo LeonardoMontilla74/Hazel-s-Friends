@@ -147,7 +147,16 @@ export default function Reducer(state = initialState, { type, payload }) {
         case FILTERS_DB:
             let result = [];
             let dogDB = state.allDogs.filter((dog) => dog.id.length > 4);
-            dogDB.length ? result = dogDB : result.push({ id: 404, name: 'Aún no has creado un perro', image: crazy, temperaments: 'Parece un buen momento para crear uno' })
+
+            dogDB.length
+                ? result = dogDB
+                : result.push(
+                    {
+                        id: 404,
+                        name: 'Aún no has creado un perro',
+                        image: crazy,
+                        temperaments: 'Parece un buen momento para crear uno'
+                    })
             return {
                 ...state,
                 order: [],

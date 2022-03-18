@@ -53,7 +53,7 @@ module.exports = async function getDogs(req, res, next) {
                             if (dog.origin) resultOfDB.origin = dog.origin;
                             if (dog.bred_for) resultOfDB.bred_for = dog.bred_for;
 
-                            return res.send(resultOfDB);
+                            return res.send([resultOfDB]);
                         }
                     }
                 }

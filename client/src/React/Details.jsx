@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getId, clearDetails } from "../Redux/actions";
 import { useHistory } from 'react-router-dom'
 import durmiendo from '../Styles/Images/durmiendo.png';
+import HazelDefault from '../Styles/Images/HazelDefault.jpg';
 import styles from '../Styles/DogCard.module.css'
 
 export default function Details(props) {
@@ -37,7 +38,7 @@ export default function Details(props) {
 
                                     <div className={styles.container}>
                                         <div>
-                                            <img src={dog.image} alt={dog.name} width={400} height={250} />
+                                            <img src={dog.image || HazelDefault} alt='' width={400} height={350} />
                                         </div>
 
                                         <div>
