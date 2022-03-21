@@ -15,9 +15,14 @@ module.exports = async function preLoader() {
             }
         });
 
-        for (let i = temperaments.length - 1; i >= 0; i--) {
+        for (let i = temperaments.length - 1; i >= 0; i--) { //Elimino los repetidos
             if (temperaments.indexOf(temperaments[i]) !== i) temperaments.splice(i, 1);
         }
+
+        temperaments.sort((a, b) => { //Ordeno por orden alfabético
+            if (a < b) return -1;
+            return 0;
+        });
 
         const crearTemp = temperaments.map((temp) => {
             return { name: temp }; // convierto el array en un objeto para pasarselo a bulkCreate  
