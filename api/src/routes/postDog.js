@@ -30,7 +30,7 @@ module.exports = async function postDog(req, res, next) {
 
             dogCreate.addTemperament(temperaments); // los temperaments son un array de numeros con los ids
 
-            res.status(201).send({ ok: 'Creación exitosa' });
+            res.status(201).send(dogCreate);
 
         } catch (error) {
             console.log(error);
