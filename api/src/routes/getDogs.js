@@ -70,8 +70,10 @@ module.exports = async function getDogs(req, res, next) {
                 id: dog.id,
                 name: dog.name,
                 image: dog.image.url,
-                height: dog.height.metric,
                 weight: dog.weight.metric,
+                height: dog.height.metric,
+                weight_max: Number(dog.weight.metric.slice(0, 2)), // Este dato es asi: "10 - 20"
+                height_max: Number(dog.height.metric.slice(0, 2)), // Lo convierto en 10
                 temperaments: dog.temperament
             };
         });
@@ -81,8 +83,10 @@ module.exports = async function getDogs(req, res, next) {
                 id: dog.id,
                 name: dog.name,
                 image: dog.image,
-                weight: dog.weight_min.toString() + ' - ' + dog.weight_max.toString(),
+                weight: dog.weight_min.toString() + ' - ' + dog.weight_max.toString(), // para mostrarlos tal cual los de la api
                 height: dog.height_min.toString() + ' - ' + dog.height_max.toString(),
+                weight_max: dog.weight_max,
+                height_max: dog.height_max,
                 temperaments: dog.temperaments.map((temp) => temp.name).join(', ')
             });
         });
