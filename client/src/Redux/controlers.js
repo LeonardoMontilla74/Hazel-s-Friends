@@ -1,49 +1,84 @@
-export default function order(type, copy) {
+import crazy from '../Styles/Images/crazy.png';
+
+function order(type, dogList) {
 
     switch (type) {
         case 'ZA':
-            copy.sort((a, b) => {
+            dogList.sort((a, b) => {
                 if (a.name > b.name) {
                     return -1;
                 }
                 return 0;
             });
-            return copy;
+            return dogList;
 
         case 'AZ':
-            copy.sort((a, b) => {
+            dogList.sort((a, b) => {
                 if (a.name < b.name) {
                     return -1;
                 }
                 return 0;
             });
-            return copy;
+            return dogList;
 
         case 'PESO_DSC':
-            copy.sort((a, b) => {
-                return b.weight - a.weight;
+            dogList.sort((a, b) => {
+                return b.weight_max - a.weight_max;
             });
-            return copy;
+            return dogList;
 
         case 'PESO_ASC':
-            copy.sort((a, b) => {
-                return a.weight - b.weight;
+            dogList.sort((a, b) => {
+                return a.weight_max - b.weight_max;
             });
-            return copy;
+            return dogList;
 
         case 'ALTURA_DSC':
-            copy.sort((a, b) => {
-                return b.height - a.height;
+            dogList.sort((a, b) => {
+                return b.height_max - a.height_max;
             });
-            return copy;
+            return dogList;
 
         case 'ALTURA_ASC':
-            copy.sort((a, b) => {
-                return a.height - b.height;
+            dogList.sort((a, b) => {
+                return a.height_max - b.height_max;
             });
-            return copy;
+            return dogList;
 
         default:
-            return copy;
+            return dogList;
     }
 }
+
+function filter(type, dogList) {
+
+    switch (type) {
+        case 'DB':
+            let result = [];
+            let dogDB = dogList.filter((dog) => dog.id.length > 4);
+            dogDB.length
+                ? result = dogDB
+                : result.push(
+                    {
+                        id: 404,
+                        name: 'Aún no has creado un perro',
+                        image: crazy,
+                        temperaments: 'Parece un buen momento para crear uno'
+                    });
+            return result;
+
+        case 'API':
+            result = dogList.filter((dog) => dog.id.length === undefined);
+            return result;
+
+        default:
+            let filterDogs = dogList.filter((dog) => {
+                return dog.id !== 196 && dog.id !== 197 && dog.id !== 211 && dog.id !== 261;
+            });
+            filterDogs.filter((dog) => dog.temperaments.includes(type));
+            return filterDogs;
+
+    }
+}
+
+export { order, filter };

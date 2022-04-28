@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getName, clearDetails } from '../../Redux/actions';
+import { getName, clear } from '../../Redux/actions';
 
 export default function SearchBar() {
 
@@ -10,6 +10,7 @@ export default function SearchBar() {
 
     function handleInput(e) {
         setInput(e.target.value);
+        dispatch(getName(e.target.value));
     };
 
     function findByName(e) {
@@ -21,7 +22,7 @@ export default function SearchBar() {
 
     function getBack(e) {
         e.preventDefault()
-        dispatch(clearDetails());
+        dispatch(clear());
     }
 
     return (

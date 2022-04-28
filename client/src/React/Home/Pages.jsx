@@ -9,8 +9,7 @@ export default function Pages() {
 
     const dispatch = useDispatch();
     const allDogs = useSelector((state) => state.allDogs);
-    const order = useSelector((state) => state.order);
-    const filters = useSelector((state) => state.filters);
+    const filters = useSelector((state) => state.render);
     const dogDetails = useSelector((state) => state.dogDetails);
     const check = allDogs.length;
 
@@ -40,10 +39,6 @@ export default function Pages() {
         totalDogs = filters.length;
         render = filters.slice(firstDog, lastDog);
     }
-    if (order.length) {
-        totalDogs = order.length;
-        render = order.slice(firstDog, lastDog);
-    }
 
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(totalDogs / 8); i++) {
@@ -60,7 +55,7 @@ export default function Pages() {
                 ))}
             </nav>
             <div className={styles.container}>
-                {render.length > 0
+                {render.length
                     ? render?.map((dog) => (
                         <div key={dog.id} >
                             <DogCard

@@ -1,37 +1,25 @@
 import axios from 'axios';
-import crazy from '../Styles/Images/crazy.png'
+import crazy from '../Styles/Images/crazy.png';
 
 export const GET_ALL_DOGS = 'GET ALL DOGS';
 export const GET_NAME = 'GET NAME';
 export const GET_ID = 'GET ID';
 export const GET_TEMPERAMENTS = 'GET TEMPERAMENTS';
 export const CREATE_DOG = 'CREATE DOG';
-export const CLEAR_DETAILS = 'CLEAR DETAILS'
-
-//Order
-export const ZA = 'ZA';
-export const AZ = 'AZ';
-export const PESO_DSC = 'PESO_DSC';
-export const PESO_ASC = 'PESO_ASC';
-export const ALTURA_DSC = 'ALTURA_DSC';
-export const ALTURA_ASC = 'ALTURA_ASC'
-export const TEMP = 'TEMP';
+export const ORDER = 'ORDER';
+export const FILTER = 'FILTER';
 export const ALL = 'ALL';
-
-//Filters
-export const FILTERS_DB = 'FILTERS DB';
-export const FILTERS_API = 'FILTERS API'
-export const CLEAR_FILTERS = 'CLEAR FILTERS'
+export const CLEAR = 'CLEAR';
 
 const URL = 'http://localhost:3001';
 
 export function getAllDogs() {
     return async function (dispatch) {
         const res = await axios.get(`${URL}/dogs`);
-        const dogs = res.data;
+        const allDogs = res.data;
         dispatch({
             type: GET_ALL_DOGS,
-            payload: dogs
+            payload: allDogs
         });
     };
 }
@@ -39,8 +27,9 @@ export function getAllDogs() {
 export function getName(name) {
     return async function (dispatch) {
         const res = await axios.get(`${URL}/dogs?name=${name}`);
-        let dog = res.data;
-        if (dog[0].error) dog = [{ id: 404, name: 'No se encontró el perro con el nombre: ' + name, image: crazy, temperaments: '' }]
+        let dog = res.data; // Si consigue el perro lo envía
+        // Si la respuesta del back es 404, recibo nombre y temperaments pero con esta línea le envío una imagen 
+        if (dog[0].id === 404) dog = [{ ...dog, image: crazy }];
         dispatch({
             type: GET_NAME,
             payload: dog
@@ -72,84 +61,36 @@ export function getTemp() {
 
 export function createDog(dogUser) {
     return async function (dispatch) {
-        const result = await axios.post(`${URL}/dog`, dogUser);
-
+        const result = await axios.post(`${URL}/dog`, dogUser); // Recibo al perro creado como un objeto
         dispatch({
             type: CREATE_DOG,
-            payload: result
+            payload: result // recibo [{perro creado...}]
         });
     };
 }
 
-export function clearDetails() {
-    return ({
-        type: CLEAR_DETAILS
-    });
-}
-
 export function applyOrder(order) {
-    switch (order) {
-        case 'ZA':
-            return ({
-                type: ZA
-            });
-
-        case 'AZ':
-            return ({
-                type: AZ
-            });
-
-        case 'PESO_DSC':
-            return ({
-                type: PESO_DSC
-            });
-
-        case 'PESO_ASC':
-            return ({
-                type: PESO_ASC
-            });
-
-        case 'ALTURA_DSC':
-            return ({
-                type: ALTURA_DSC
-            });
-
-        case 'ALTURA_ASC':
-            return ({
-                type: ALTURA_ASC
-            });
-
-        case 'ALL':
-            return ({
-                type: ALL
-            })
-
-        default:
-            return;
-    }
-}
-
-export function applyFilters(temp) {
     return ({
-        type: TEMP,
-        payload: temp
+        type: ORDER,
+        payload: order
     });
 }
 
-export function filtersDB() {
-    return {
-        type: FILTERS_DB
-    };
+export function applyFilters(filter) {
+    return ({
+        type: FILTER,
+        payload: filter,
+    });
 }
 
-export function filtersAPI() {
-    return {
-        type: FILTERS_API
-    };
+export function all() {
+    return ({
+        type: ALL
+    });
 }
 
-export function clearFilters() {
-    return {
-        type: CLEAR_FILTERS
-    };
+export function clear() { // Para que cada vez que se vea un nuevo perro el estado esté vacío el detalle
+    return ({
+        type: CLEAR
+    });
 }

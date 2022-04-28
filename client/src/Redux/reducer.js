@@ -4,33 +4,20 @@ import {
     GET_ID,
     GET_TEMPERAMENTS,
     CREATE_DOG,
-    CLEAR_DETAILS,
-    ZA,
-    AZ,
-    PESO_DSC,
-    PESO_ASC,
-    ALTURA_DSC,
-    ALTURA_ASC,
-    TEMP,
-    FILTERS_DB,
-    FILTERS_API,
-    CLEAR_FILTERS,
-    ALL
+    ORDER,
+    FILTER,
+    ALL,
+    CLEAR
 } from "./actions";
 
-import order from './controlers'
-import crazy from '../Styles/Images/crazy.png'
+import { order, filter } from './controlers';
 
 const initialState = {
     allDogs: [],
-    initialOrder: [],
-    order: [],
-    filters: [],
+    render: [],
     dogDetails: [],
-    temperaments: [],
-    page: 1
+    temperaments: []
 };
-
 
 export default function Reducer(state = initialState, { type, payload }) {
 
@@ -39,28 +26,18 @@ export default function Reducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 allDogs: payload,
-                initialOrder: payload.map((dog) => {
-                    return {
-                        ...dog,
-                        weight: Number(dog.weight.slice(0, 2)),
-                        height: Number(dog.height.slice(0, 2))
-                    };
-                })
+                render: payload
             };
 
         case GET_NAME:
             return {
                 ...state,
-                filters: [],
-                order: [],
-                dogDetails: payload
+                render: payload
             };
 
         case GET_ID:
             return {
                 ...state,
-                filters: [],
-                order: [],
                 dogDetails: payload
             };
 
@@ -73,113 +50,33 @@ export default function Reducer(state = initialState, { type, payload }) {
         case CREATE_DOG:
             return {
                 ...state,
-                allDogs: state.allDogs,
+                dogDetails: payload
             };
 
-        case CLEAR_DETAILS:
+        case ORDER:
             return {
                 ...state,
-                dogDetails: [],
-            }
-
-        case ZA:
-            return {
-                ...state,
-                order: order('ZA', state.initialOrder),
+                render: order(payload, state.render) // función que recibe el tipo y el estado y devuelve el mismo array ordenado
             };
 
-        case AZ:
+        case FILTER:
             return {
                 ...state,
-                order: order('AZ', state.initialOrder),
+                render: filter(payload, state.render)
             };
-
-        case PESO_DSC:
-            return {
-                ...state,
-                order: order('PESO_DSC', state.initialOrder),
-            };
-
-        case PESO_ASC:
-            return {
-                ...state,
-                order: order('PESO_ASC', state.initialOrder),
-            };
-
-        case ALTURA_DSC:
-            return {
-                ...state,
-                order: order('ALTURA_DSC', state.initialOrder),
-            };
-
-        case ALTURA_ASC:
-            return {
-                ...state,
-                order: order('ALTURA_ASC', state.initialOrder),
-            };
-
-        case TEMP:
-            let filterDog = [];
-            if (state.filters.length < 1) {
-                filterDog = state.allDogs;
-            } else {
-                filterDog = state.filters.filter((dog) => {
-                    if (dog.id !== 196
-                        && dog.id !== 197
-                        && dog.id !== 211
-                        && dog.id !== 261) {
-                        return dog;
-                    }
-                });
-            }
-            return {
-                ...state,
-                order: [],
-                filters: filterDog.filter((dog) => {
-                    if (dog.temperaments) {
-                        return dog.temperaments.includes(payload);
-                    }
-                    return dog
-                })
-            };
-
-        case FILTERS_DB:
-            let result = [];
-            let dogDB = state.allDogs.filter((dog) => dog.id.length > 4);
-
-            dogDB.length
-                ? result = dogDB
-                : result.push(
-                    {
-                        id: 404,
-                        name: 'Aún no has creado un perro',
-                        image: crazy,
-                        temperaments: 'Parece un buen momento para crear uno'
-                    })
-            return {
-                ...state,
-                order: [],
-                filters: result
-            };
-
-        case FILTERS_API:
-            return {
-                ...state,
-                order: [],
-                filters: state.allDogs.filter((dog) => dog.id.length === undefined)
-            };
-
-        case CLEAR_FILTERS:
-            return {
-                ...state,
-                filters: [],
-            }
 
         case ALL:
             return {
                 ...state,
-                order: state.allDogs
-            }
+                render: state.allDogs // para volver al estado original
+            };
+
+        case CLEAR:
+            return {
+                ...state, // si necesito limpiar el render por ejemplo al entrar en cada detalle
+                render: [],
+                dogDetails: []
+            };
 
         default: return state;
     }

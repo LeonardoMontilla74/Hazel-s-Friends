@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getId, clearDetails } from "../Redux/actions";
+import { getId, clear } from "../Redux/actions";
 import { useHistory } from 'react-router-dom'
 import durmiendo from '../Styles/Images/durmiendo.png';
-import HazelDefault from '../Styles/Images/HazelDefault.jpg';
+import collage from '../Styles/Images/collage.jpg';
 import styles from '../Styles/DogCard.module.css'
 
 export default function Details(props) {
@@ -17,7 +17,7 @@ export default function Details(props) {
 
         dispatch(getId(id));
 
-        return () => dispatch(clearDetails());
+        return () => dispatch(clear());
 
     }, [dispatch, id]);
 
@@ -38,7 +38,7 @@ export default function Details(props) {
 
                                     <div className={styles.container}>
                                         <div>
-                                            <img src={dog.image || HazelDefault} alt='' width={400} height={350} />
+                                            <img src={dog.image || collage} alt='' width={400} height={350} />
                                         </div>
 
                                         <div>
