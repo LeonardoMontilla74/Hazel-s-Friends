@@ -58,7 +58,7 @@ module.exports = async function getDogs(req, res, next) {
                     }
                 }
             }
-            res.status(404).send([{ id: 404, name: `No se encontro ningún perro con el nombre ${name}`, temperaments: '' }])
+            res.send([{ id: 404, name: `No se encontro ningún perro con el nombre ${name}`, temperaments: '' }])
 
         } catch (error) {
             console.error(error);

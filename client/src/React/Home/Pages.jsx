@@ -21,6 +21,7 @@ export default function Pages() {
     const [pages, setPages] = useState(1);
 
     function handlePage(num) {
+        if (filters.length !== check) setPages(1)
         setPages(num);
     }
 

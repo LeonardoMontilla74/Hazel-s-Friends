@@ -57,7 +57,7 @@ export default function Reducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 render: [...order(payload, state.render)] // función que recibe el tipo y el estado y devuelve el mismo array ordenado
-            };
+            }; //Nota: como recibe el mismo array pero ordenado para renderizar es necesario meterlo en un nuevo array
 
         case FILTER:
             return {

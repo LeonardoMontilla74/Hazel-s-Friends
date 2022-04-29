@@ -1,12 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { applyOrder } from "../../Redux/actions";
+import { applyOrder, all } from "../../Redux/actions";
 
 export default function Order() {
 
     const dispatch = useDispatch();
 
     const handleOrder = (e) => {
+        if (e.target.value === 'ALL') dispatch(all());
         dispatch(applyOrder(e.target.value));
     };
 

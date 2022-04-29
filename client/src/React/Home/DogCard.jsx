@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import HazelDefault from '../../Styles/Images/HazelDefault.jpg';
+import collage from '../../Styles/Images/collage.jpg';
+import crazy from '../../Styles/Images/crazy.png';
 import styles from '../../Styles/DogCard.module.css';
 
 export default function DogCard(props) {
-    let image = props.image || HazelDefault
+    let image = props.image || collage
     return (
         <div className={styles.dogCards}>
             {props.id !== 404
@@ -15,7 +16,7 @@ export default function DogCard(props) {
                 </Link>
                 : <div>
                     <h2>{props.name}</h2>
-                    <img src={image} alt="Img del perro" width={180} />
+                    <img src={crazy} alt="Img del perro" width={180} />
                     <p>{props.temperaments}</p>
                 </div>
             }

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import crazy from '../Styles/Images/crazy.png';
 
 export const GET_ALL_DOGS = 'GET ALL DOGS';
 export const GET_NAME = 'GET NAME';
@@ -27,9 +26,7 @@ export function getAllDogs() {
 export function getName(name) {
     return async function (dispatch) {
         const res = await axios.get(`${URL}/dogs?name=${name}`);
-        let dog = res.data; // Si consigue el perro lo envía
-        // Si la respuesta del back es 404, recibo nombre y temperaments pero con esta línea le envío una imagen 
-        if (dog[0].id === 404) dog = [{ ...dog, image: crazy }];
+        let dog = res.data;
         dispatch({
             type: GET_NAME,
             payload: dog
@@ -64,7 +61,7 @@ export function createDog(dogUser) {
         const result = await axios.post(`${URL}/dog`, dogUser); // Recibo al perro creado como un objeto
         dispatch({
             type: CREATE_DOG,
-            payload: result // recibo [{perro creado...}]
+            payload: result // result [{perro creado...}]
         });
     };
 }
