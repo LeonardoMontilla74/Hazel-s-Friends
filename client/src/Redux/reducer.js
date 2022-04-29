@@ -56,7 +56,7 @@ export default function Reducer(state = initialState, { type, payload }) {
         case ORDER:
             return {
                 ...state,
-                render: order(payload, state.render) // función que recibe el tipo y el estado y devuelve el mismo array ordenado
+                render: [...order(payload, state.render)] // función que recibe el tipo y el estado y devuelve el mismo array ordenado
             };
 
         case FILTER:
@@ -74,7 +74,6 @@ export default function Reducer(state = initialState, { type, payload }) {
         case CLEAR:
             return {
                 ...state, // si necesito limpiar el render por ejemplo al entrar en cada detalle
-                render: [],
                 dogDetails: []
             };
 

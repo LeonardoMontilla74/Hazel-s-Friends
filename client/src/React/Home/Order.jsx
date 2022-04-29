@@ -7,14 +7,13 @@ export default function Order() {
     const dispatch = useDispatch();
 
     const handleOrder = (e) => {
-        dispatch(applyOrder('ALL'))
         dispatch(applyOrder(e.target.value));
     };
 
     return (
         <div>
             <label>Ordenar:</label>
-            <select onClick={handleOrder}>
+            <select onChange={handleOrder}>
                 <option>Seleccione una opción</option>
                 <option value="ZA">Z - A</option>
                 <option value="AZ">A - Z</option>

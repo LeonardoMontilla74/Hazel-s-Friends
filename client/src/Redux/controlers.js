@@ -51,10 +51,10 @@ function order(type, dogList) {
 }
 
 function filter(type, dogList) {
+    let result = [];
 
     switch (type) {
         case 'DB':
-            let result = [];
             let dogDB = dogList.filter((dog) => dog.id.length > 4);
             dogDB.length
                 ? result = dogDB
@@ -72,12 +72,11 @@ function filter(type, dogList) {
             return result;
 
         default:
-            let filterDogs = dogList.filter((dog) => {
+            const dogNull = dogList.filter((dog) => {
                 return dog.id !== 196 && dog.id !== 197 && dog.id !== 211 && dog.id !== 261;
             });
-            filterDogs.filter((dog) => dog.temperaments.includes(type));
-            return filterDogs;
-
+            const dogMatch = dogNull.filter((dog) => dog.temperaments.includes(type));
+            return dogMatch;
     }
 }
 

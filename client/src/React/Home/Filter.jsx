@@ -25,10 +25,10 @@ export default function Order() {
             </select>
             <label>Filtrar por temperamentos:</label>
             <select onChange={handleFilters}>
-                <option>Selecione un temperamento</option>
+                <option value={null}>Selecione un temperamento</option>
                 {temperaments.map((temp) => <option key={temp.id} value={temp.name} >{temp.name}</option>)}
             </select>
-            <button onClick={dispatch(all())} >Limpiar filtros</button>
+            <button onClick={() => dispatch(all())} >Limpiar filtros</button>
         </div>
     );
 }

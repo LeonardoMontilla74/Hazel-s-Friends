@@ -10,7 +10,6 @@ export default function SearchBar() {
 
     function handleInput(e) {
         setInput(e.target.value);
-        dispatch(getName(e.target.value));
     };
 
     function findByName(e) {
