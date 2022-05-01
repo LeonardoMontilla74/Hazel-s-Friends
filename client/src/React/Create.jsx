@@ -9,6 +9,7 @@ export default function Create() {
 
     const dispatch = useDispatch();
     const temperaments = useSelector((state) => state.temperaments);
+    const allDogs = useSelector((state) => state.allDogs);
 
     const check = temperaments.length
     const history = useHistory()
@@ -26,7 +27,10 @@ export default function Create() {
 
     function validate(inputs) {
 
+        const nameExist = allDogs.find((dog) => dog.name === inputs.name)
+
         if (/\d+/.test(inputs.name)) error.name = "El nombre es inválido";
+        if (nameExist) error.name = 'El nombre ya existe'
         if (/\d+/.test(inputs.bred_for)) error.bred_for = "Debe ser un texto";
         if (/\d+/.test(inputs.origin)) error.origin = "Debe ser un texto";
         if (inputs.height_max < inputs.height_min) error.height_max = 'La altura máxima debe ser mayor';
