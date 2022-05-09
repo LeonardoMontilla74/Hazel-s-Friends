@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getName, clear } from '../../Redux/actions';
+import { getName, all } from '../../Redux/actions';
 
 export default function SearchBar() {
 
@@ -21,7 +21,7 @@ export default function SearchBar() {
 
     function getBack(e) {
         e.preventDefault()
-        dispatch(clear());
+        dispatch(all());
     }
 
     return (
