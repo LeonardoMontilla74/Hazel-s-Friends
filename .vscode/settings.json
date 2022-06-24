@@ -39,8 +39,8 @@
     "security.workspace.trust.untrustedFiles": "open",
     "explorer.confirmDelete": true,
 
-    "editor.fontFamily": "Comic Sans Ms",
-    "editor.fontSize": 15,
+    "editor.fontFamily": "Verdana",
+    "editor.fontSize": 14,
     "editor.renderWhitespace": "trailing",
     "editor.cursorBlinking": "expand",
     "editor.cursorStyle": "line-thin",
@@ -50,12 +50,12 @@
     "editor.minimap.maxColumn": 80,
 
     "editor.quickSuggestionsDelay": 4,
-    "editor.suggest.insertMode": "replace",
+    "editor.suggest.insertMode": "insert",
     "editor.suggest.shareSuggestSelections": true,
     "editor.suggestSelection":"recentlyUsed",
     "editor.acceptSuggestionOnEnter": "off",
     
-    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "editor.defaultFormatter": "vscode.emmet",
     "editor.formatOnPaste": true,
     "editor.formatOnType": true,
     "editor.formatOnSave": true,
@@ -90,7 +90,7 @@
     "workbench.panel.opensMaximized": "always",
     "workbench.startupEditor": "none",
     "workbench.colorTheme": "Monokai Pro (Filter Machine)",
-    "workbench.preferredDarkColorTheme": "Monokai Pro (Filter Spectrum)",
+    "workbench.preferredDarkColorTheme": "Monokai Pro (Filter Machine)",
     "workbench.preferredLightColorTheme": "Abyss",
     "workbench.colorCustomizations": {
         "editorBracketHighlight.foreground1": "#01afffc5",
@@ -98,4 +98,9 @@
         "editorBracketHighlight.foreground3": "#FFBF00",
         "editorBracketHighlight.unexpectedBracket.foreground": "#ff0000",
     },
+    "editor.wordWrap": "on",
+    "editor.suggest.showStatusBar": true,
+    "editor.wordBasedSuggestionsMode": "allDocuments",
+    "files.insertFinalNewline": true,
+    "outline.icons": true,
 }
