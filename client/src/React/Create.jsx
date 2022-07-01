@@ -60,7 +60,6 @@ export default function Create() {
     };
 
     function handleTemperaments ( e ) {
-        console.log( e.target.name );
         setInputs( {
             ...inputs,
             temperaments: [...inputs.temperaments, Number( e.target.value )],

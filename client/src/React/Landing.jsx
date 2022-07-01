@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getAllDogs } from "../Redux/actions";
-import dogPI from '../Styles/Images/dog-retrato.jpg';
+import hazel from '../Styles/Images/HazelDefault.jpg';
 import button from '../Styles/Images/button.png';
 import { Link } from "react-router-dom";
 import styles from '../Styles/Landing.module.css'
@@ -17,7 +17,7 @@ export default function Landing() {
     return (
         <div className={styles.container}>
             <div>
-                <img className={styles.imagen} src={dogPI} alt="Img retrato" />
+                <img className={ styles.imagen } src={ hazel } alt="Img retrato" />
             </div>
 
             <div className={styles.titulo}>

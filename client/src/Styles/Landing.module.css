@@ -37,8 +37,10 @@ transform: rotate(360deg);
 }
 
 .imagen{
-    width: 55vmax;
+    width: 40vmax;
+        height: 28rem;
     position: absolute;
-    margin-left: 40%;
+    margin-left: 50%;
     margin-top: 2%;
 }
+
