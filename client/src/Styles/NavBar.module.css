@@ -3,8 +3,16 @@
     align-items: center;
     justify-content: space-around;
     padding: 0.5rem;
+    height: 5rem;
 }
 
+.containerSocial {
+    width: 8rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
 .buttonGet {
     background-color: transparent;
     transition: all .3s ease-in-out;
