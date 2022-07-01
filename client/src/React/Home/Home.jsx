@@ -6,11 +6,13 @@ import { Link } from 'react-router-dom'
 import Dogs from "./Dogs";
 import styles from '../../Styles/Search.module.css'
 import dogLaptop from '../../Styles/Images/dog-laptop.jpg'
+import NavBar from "./NavBar";
 
 export default function Home() {
 
     return (
         <div>
+            <NavBar />
             <div className={styles.container}>
                 <Search />
                 <Order />
