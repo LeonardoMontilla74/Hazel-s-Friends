@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTemp, applyFilters, all } from '../../Redux/actions';
+import { getTemp, applyFilters, all, setPages } from '../../Redux/actions';
 
 export default function Order() {
 
@@ -13,6 +13,7 @@ export default function Order() {
 
     function handleFilters(e) {
         dispatch(applyFilters(e.target.value))
+        dispatch( setPages( 1 ) )
     }
 
     return (

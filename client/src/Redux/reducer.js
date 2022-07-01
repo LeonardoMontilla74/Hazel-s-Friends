@@ -7,7 +7,8 @@ import {
     ORDER,
     FILTER,
     ALL,
-    CLEAR
+    CLEAR,
+    SET_PAGES
 } from "./actions";
 
 import { order, filter } from './controlers';
@@ -16,7 +17,8 @@ const initialState = {
     allDogs: [],
     render: [],
     dogDetails: [],
-    temperaments: []
+    temperaments: [],
+    pages: 1
 };
 
 export default function Reducer(state = initialState, { type, payload }) {
@@ -63,6 +65,12 @@ export default function Reducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 render: filter(payload, state.render)
+            };
+
+        case SET_PAGES:
+            return {
+                ...state,
+                pages: payload
             };
 
         case ALL:

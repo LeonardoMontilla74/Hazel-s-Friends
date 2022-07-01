@@ -7,6 +7,7 @@ export const GET_TEMPERAMENTS = 'GET TEMPERAMENTS';
 export const CREATE_DOG = 'CREATE DOG';
 export const ORDER = 'ORDER';
 export const FILTER = 'FILTER';
+export const SET_PAGES = 'SET_PAGES';
 export const ALL = 'ALL';
 export const CLEAR = 'CLEAR';
 
@@ -78,6 +79,13 @@ export function applyFilters(filter) {
         type: FILTER,
         payload: filter,
     });
+}
+
+export function setPages ( num ) {
+    return ( {
+        type: SET_PAGES,
+        payload: num
+    } );
 }
 
 export function all() {

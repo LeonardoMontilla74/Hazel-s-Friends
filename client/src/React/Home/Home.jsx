@@ -3,7 +3,7 @@ import Search from './Search';
 import Order from "./Order";
 import Filter from "./Filter";
 import { Link } from 'react-router-dom'
-import Pages from "./Pages";
+import Dogs from "./Dogs";
 import styles from '../../Styles/Search.module.css'
 import dogLaptop from '../../Styles/Images/dog-laptop.jpg'
 
@@ -22,7 +22,7 @@ export default function Home() {
                     </div>
                 </Link>
             </div>
-            <Pages />
+            <Dogs />
         </div>
     );
 }
