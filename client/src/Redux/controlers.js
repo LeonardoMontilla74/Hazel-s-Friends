@@ -55,7 +55,7 @@ function filter(type, dogList) {
 
     switch (type) {
         case 'DB':
-            let dogDB = dogList.filter((dog) => dog.id.length > 4);
+            let dogDB = dogList.filter( ( dog ) => dog.api === false );
             dogDB.length
                 ? result = dogDB
                 : result.push(
@@ -68,7 +68,7 @@ function filter(type, dogList) {
             return result;
 
         case 'API':
-            result = dogList.filter((dog) => dog.id.length === undefined);
+            result = dogList.filter( ( dog ) => dog.api === true );
             return result;
 
         default:

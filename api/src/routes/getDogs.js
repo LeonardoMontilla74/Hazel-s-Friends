@@ -67,6 +67,7 @@ module.exports = async function getDogs(req, res, next) {
     } else { // si no hay un name como criterio de busqueda envio por defecto la ruta principal
         const dogsApi = allDogsAPI.data?.map((dog) => {
             return {
+                api: true,
                 id: dog.id,
                 name: dog.name,
                 image: dog.image.url,
@@ -79,7 +80,8 @@ module.exports = async function getDogs(req, res, next) {
         });
 
         const dogsDB = allDogsDB?.map((dog) => {
-            return ({
+            return ( {
+                api: false,
                 id: dog.id,
                 name: dog.name,
                 image: dog.image,
