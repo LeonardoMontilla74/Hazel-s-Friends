@@ -45,12 +45,7 @@ export default function Create() {
     }
 
     function handleChange(e) {
-        if (e.target.name === 'temperaments') {
-            setInputs({
-                ...inputs,
-                temperaments: [...inputs.temperaments, Number(e.target.value)],
-            });
-        } else if (e.target.type === 'number') {
+        if ( e.target.type === 'number' ) {
             setInputs({
                 ...inputs,
                 [e.target.name]: Number(e.target.value)
@@ -64,12 +59,19 @@ export default function Create() {
         }
     };
 
+    function handleTemperaments ( e ) {
+        console.log( e.target.name );
+        setInputs( {
+            ...inputs,
+            temperaments: [...inputs.temperaments, Number( e.target.value )],
+        } );
+    }
+
     function onSubmit(input) {
         validate(inputs);
         if (Object.keys(error).length === 0) {
             dispatch(createDog(input));
-            dispatch(getAllDogs());
-            alert('Creación exitosa');
+            dispatch( getAllDogs() );
             history.push('/dogs');
         } else {
             alert('Por favor complete el formulario correctamente');
@@ -87,7 +89,7 @@ export default function Create() {
                 <label>Nombre:
                     <input
                         type="text"
-                        placeholder="Ej. Hazel..."
+                        placeholder="Nombre de tú mascota..."
                         name="name"
                         value={inputs.name}
                         autoComplete="off"
@@ -111,7 +113,7 @@ export default function Create() {
                 <label>Altura minima:
                     <input
                         type="number"
-                        placeholder="Ej. 60..."
+                        placeholder="Menor a la anterior"
                         name="height_min"
                         value={inputs.height_min}
                         className={errors.height_min ? styles.error : null}
@@ -134,7 +136,7 @@ export default function Create() {
                 <label>Peso minimo:
                     <input
                         type="number"
-                        placeholder="Ej. 4..."
+                        placeholder="Menor a la anterior"
                         name="weight_min"
                         value={inputs.weight_min}
                         className={errors.weight_min ? styles.error : null}
@@ -156,7 +158,7 @@ export default function Create() {
                 <label>Origen:
                     <input
                         type="text"
-                        placeholder="Ej. Venezuela..."
+                        placeholder="De que país es tu mascota..."
                         name="origin"
                         value={inputs.origin}
                         autoComplete='off'
@@ -180,11 +182,11 @@ export default function Create() {
                 <br />
 
                 <label>Temperamentos:
-                    <select name="temperaments" onChange={handleChange} >
+                    <select onChange={ handleTemperaments } >
                         <option value="">Seleciona un temperamento</option>
                         {temperaments.map((temp) => {
                             return (
-                                <option key={temp.id} name={temp.id} value={temp.id} >{temp.name}</option>
+                                <option key={ temp.id } name={ temp.name } value={ temp.id } >{ temp.name }</option>
                             );
                         })}
                     </select>
