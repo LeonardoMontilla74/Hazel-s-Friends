@@ -45,7 +45,7 @@ transform: rotate(360deg);
     margin-top: 2%;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 720px) {
     .titulo {
         width: 95%;
         padding: 0.5rem;

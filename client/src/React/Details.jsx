@@ -38,7 +38,10 @@ export default function Details(props) {
 
                                     <div className={styles.container}>
                                         <div>
-                                            <img src={dog.image || collage} alt='' width={400} height={350} />
+                                            <img src={ dog.image || collage }
+                                                alt=''
+                                                className={ styles.imagen }
+                                            />
                                         </div>
 
                                         <div>
@@ -58,7 +61,10 @@ export default function Details(props) {
                     })
                     : <div>
                         <h2>Cargando...</h2>
-                        <img src={durmiendo} width={180} alt="Esperando..." />
+                        <img
+                            className={ styles.imagen }
+                            src={ durmiendo }
+                            alt="Esperando..." />
                     </div>
                 }
             </div>
