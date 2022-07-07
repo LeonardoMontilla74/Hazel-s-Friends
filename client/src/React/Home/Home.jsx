@@ -19,7 +19,9 @@ export default function Home() {
                 <Filter />
                 <Link to='/createDog' style={{ textDecoration: 'none' }} >
                     <div className={styles.create}>
-                        <img src={dogLaptop} alt="img not found" width={80} />
+                        <img className={ styles.imagenDogLaptop }
+                            src={ dogLaptop }
+                            alt="img not found" />
                         <button>Crear un nuevo perrito</button>
                     </div>
                 </Link>
