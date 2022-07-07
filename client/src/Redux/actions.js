@@ -11,11 +11,9 @@ export const SET_PAGES = 'SET_PAGES';
 export const ALL = 'ALL';
 export const CLEAR = 'CLEAR';
 
-const URL = 'http://localhost:3001';
-
 export function getAllDogs() {
     return async function (dispatch) {
-        const res = await axios.get(`${URL}/dogs`);
+        const res = await axios.get( `/dogs` );
         const allDogs = res.data;
         dispatch({
             type: GET_ALL_DOGS,
@@ -26,7 +24,7 @@ export function getAllDogs() {
 
 export function getName(name) {
     return async function (dispatch) {
-        const res = await axios.get(`${URL}/dogs?name=${name}`);
+        const res = await axios.get( `/dogs?name=${name}` );
         let dog = res.data;
         dispatch({
             type: GET_NAME,
@@ -37,7 +35,7 @@ export function getName(name) {
 
 export function getId(idRaza) {
     return async function (dispatch) {
-        const res = await axios.get(`${URL}/dogs/${idRaza}`);
+        const res = await axios.get( `/dogs/${idRaza}` );
         const dog = res.data;
         dispatch({
             type: GET_ID,
@@ -48,7 +46,7 @@ export function getId(idRaza) {
 
 export function getTemp() {
     return async function (dispatch) {
-        const res = await axios.get(`${URL}/temperaments`);
+        const res = await axios.get( `/temperaments` );
         const temperaments = res.data;
         dispatch({
             type: GET_TEMPERAMENTS,
@@ -59,7 +57,7 @@ export function getTemp() {
 
 export function createDog(dogUser) {
     return async function (dispatch) {
-        const result = await axios.post(`${URL}/dog`, dogUser); // Recibo al perro creado como un objeto
+        const result = await axios.post( `/dog`, dogUser ); // Recibo al perro creado como un objeto
         dispatch({
             type: CREATE_DOG,
             payload: result // result [{perro creado...}]
