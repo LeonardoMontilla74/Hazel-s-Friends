@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getName, all } from '../../Redux/actions';
+import { getName, setPages, all } from '../../Redux/actions';
 
 export default function SearchBar() {
 
@@ -15,7 +15,8 @@ export default function SearchBar() {
     function findByName(e) {
         e.preventDefault();
         if (e.keyCode === 13) dispatch(getName(input))
-        dispatch(getName(input));
+        dispatch( getName( input ) );
+        dispatch( setPages( 1 ) )
         setInput('');
     };
 

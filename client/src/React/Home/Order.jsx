@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { applyOrder, all } from "../../Redux/actions";
+import { applyOrder, setPages, all } from "../../Redux/actions";
 
 export default function Order() {
 
@@ -9,6 +9,7 @@ export default function Order() {
     const handleOrder = (e) => {
         if (e.target.value === 'ALL') dispatch(all());
         dispatch(applyOrder(e.target.value));
+        dispatch( setPages( 1 ) )
     };
 
     return (

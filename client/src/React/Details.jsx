@@ -36,7 +36,7 @@ export default function Details(props) {
 
                                     <h2>{dog.name}</h2>
 
-                                    <div className={styles.container}>
+                                    <div className={ styles.container }>
                                         <div>
                                             <img src={ dog.image || collage }
                                                 alt=''
@@ -62,7 +62,7 @@ export default function Details(props) {
                     : <div>
                         <h2>Cargando...</h2>
                         <img
-                            className={ styles.imagen }
+                            className={ styles.durmiendo }
                             src={ durmiendo }
                             alt="Esperando..." />
                     </div>

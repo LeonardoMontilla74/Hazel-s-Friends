@@ -10,6 +10,7 @@
   border: solid 0.1rem;
   border-color: var(--color-letter);
   border-radius: 0.5rem;
+  
   margin: 1rem;
   padding: 1rem;
   width: 15rem;
@@ -34,8 +35,15 @@ box-shadow: 0px 0px 15px 15px #e0ab84;
     border-radius:1.5rem;
     box-shadow: 0px 0px 15px 15px #88664d;
 }
+
 .imagen {
   width: 25rem;
+  max-height: 20rem;
+  }
+  
+  .durmiendo {
+    width: 10rem;
+    max-height: 10rem;
 }
 
 @media only screen and (max-width: 400px) {
@@ -52,7 +60,7 @@ box-shadow: 0px 0px 15px 15px #e0ab84;
 
   .imagen {
     width: 15rem;
-    height: auto;
+    height: 10rem;
   }
 
 }
